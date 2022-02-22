@@ -18,7 +18,7 @@ const CollectedBar = React.memo<CollectedBarProps>(({
             <div className="font-archivo font-bold text-white opacity-90 mb-1 text-right">
                 {isCompleted
                     ? "Completed"
-                    : `${collected} / ${total}`
+                    : `${collected} / ${total} left`
                 }
             </div>
             {isCompleted

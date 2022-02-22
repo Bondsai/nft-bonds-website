@@ -6,16 +6,16 @@ interface ButtonProps {
     onClick?: MouseEventHandler
 }
 
-const PurpleGreenButton: React.FC<ButtonProps> = ({
+const SolanaBlueButton: React.FC<ButtonProps> = ({
     title,
     onClick,
 }) => {
     return (
-        <BaseButton extraClasses="bg-gradient-to-br from-sol-green text-sm to-blue-500 text-white"
+        <BaseButton extraClasses="bg-solana-blue text-white"
                     onClick={onClick}>
             {title}
         </BaseButton>
     );
 };
 
-export default PurpleGreenButton;
+export default SolanaBlueButton;
