@@ -26,9 +26,11 @@ module.exports = {
         extend: {
             colors: {
                 'sol-gray': 'rgb(35, 39, 45)',
+                'sol-gray-light': 'rgb(55, 59, 65)',
                 'sol-green': 'rgb(122, 255, 170)',
                 'sol-purple': 'rgb(152, 91, 256)',
                 'sol-white': 'rgb(174, 185, 196)',
+                'sol-sea' : 'rgb(85, 205, 234)'
                 'sol-sea' : 'rgb(85, 205 234)',
                 'sol-dark-blue': 'rgb(12, 27, 47)',
                 'event-info': '#131823',

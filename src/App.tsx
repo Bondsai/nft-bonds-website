@@ -1,6 +1,7 @@
 import React from "react";
 import AppRouter from "./AppRouter";
 import Navbar from "./components/common/navbar/Navbar";
+import ExploreBonds from "./pages/ExploreBonds";
 
 const App: React.FC = () => (
     <div className="min-h-screen bg-sol-gray w-full">
