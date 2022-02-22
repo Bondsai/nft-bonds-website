@@ -1,6 +1,8 @@
 import React, {useRef, useState} from 'react';
 import EventItem from "../components/common/EventItem";
 import {useObserver} from "../hooks/useObserver";
+import SearchInput from "../components/common/input/SearchInput";
+import {BiSearchAlt2} from "react-icons/bi";
 
 const ExploreBonds = () => {
 
@@ -17,6 +19,7 @@ const ExploreBonds = () => {
         {id: 10, value: false},
     ])
     const [isLoading, setIsLoading] = useState(false)
+    const [request, setRequest] = useState('')
     const lastElement = useRef()
 
     useObserver(lastElement, true, isLoading, () => {
@@ -49,6 +52,13 @@ const ExploreBonds = () => {
             </button>
         </div>
         <hr className="bg-sol-white"/>
+        <SearchInput
+            value={request}
+            onChange={e => setRequest(e.target.value)}
+            type='text'
+            placeholder="Company name"
+            className="rounded-lg m-2"
+        />
         <div
             className="grid grid-cols-1 xs:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 justify-center">
             {items.map(item => <EventItem defaultIsFinished={item.value} key={item.id}>
