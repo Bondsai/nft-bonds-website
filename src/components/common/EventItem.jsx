@@ -3,6 +3,7 @@ import {BiTimeFive} from "react-icons/bi";
 import {ImCheckmark} from "react-icons/im";
 import {IoMdPricetags} from "react-icons/io";
 import PurpleGreenButton from "./buttons/PurpleGreenButton";
+import Image from "./image/Image";
 
 const EventItem = () => {
     const [isFinished, setIsFinished] = useState(false)
@@ -17,7 +18,7 @@ const EventItem = () => {
             {isFinished ? <div
                 className="text-2xl justify-center flex absolute w-40 h-10 bg-gradient-to-br from-sol-green to-blue-500 text-white rounded ml-8">
                 Collected
-            </div> : "Here your pictures"}
+            </div> : <Image isLoading="true"/>}
         </div>
         <div className="text-sol-white justify-center flex text-2xl font-bold overflow-x-scroll max-w-60 max-h-10">
             Our Company

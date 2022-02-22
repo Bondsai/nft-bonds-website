@@ -29,7 +29,7 @@ module.exports = {
                 'sol-green': 'rgb(122, 255, 170)',
                 'sol-purple': 'rgb(152, 91, 256)',
                 'sol-white': 'rgb(174, 185, 196)',
-                'sol-sea' : 'rgb(85, 205 234)'
+                'sol-sea' : 'rgb(85, 205, 234)'
             }
         },
     },
