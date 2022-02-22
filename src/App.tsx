@@ -1,6 +1,7 @@
 import React from "react";
 import PurpleGreenButton from "./components/common/buttons/PurpleBlueButton";
 import PurpleBlueButton from "./components/common/buttons/PurpleBlueButton";
+import AddForm from "./components/common/forms/AddForm";
 
 const App: React.FC = () => (
     <div className="min-h-screen bg-sol-gray">
@@ -27,16 +28,7 @@ const App: React.FC = () => (
             </div>
         </nav>
 
-        <div>
-            <form className="m-4 flex">
-                <input
-                    className="rounded-l-lg p-4 border-t mr-0 border-b border-l text-gray-800 border-gray-200 bg-white"
-                    placeholder="nft address?"/>
-                <PurpleBlueButton>
-                    Subscribe
-                </PurpleBlueButton>
-            </form>
-        </div>
+        <AddForm buttonTitle={"submit"} placeholder={"nft address?"}/>
 
         {/*<div className="text-sol-white p-40 text-3xl font-bold">*/}
         {/*    <h1>Required NFTs</h1>*/}
