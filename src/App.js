@@ -1,4 +1,4 @@
-import PurpleGreenButton from "./components/common/buttons/PurpleGreenButton";
+import PurpleGreenButton from "./components/common/buttons/PurpleBlueButton";
 
 const App = () => (
     <div className="min-h-screen bg-sol-gray">
