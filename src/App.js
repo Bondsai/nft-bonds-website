@@ -1,7 +1,11 @@
+import PurpleGreenButton from "./components/common/buttons/PurpleGreenButton";
+
 const App = () => (
     <div className="min-h-screen bg-sol-gray">
         <div className="text-sol-white p-40 text-3xl font-bold">
-            Solana
+            <PurpleGreenButton>
+                Solana
+            </PurpleGreenButton>
         </div>
     </div>
 )
