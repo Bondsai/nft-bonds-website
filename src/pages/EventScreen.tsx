@@ -18,7 +18,7 @@ const EventScreen: React.FC<EventScreenProps> = () => {
                             description="War thunder is big Belarus company that allow you to play Tank games"
                 />
             </div>
-            <CollectedBar collected={20} total={200}/>
+            <CollectedBar collected={200} total={200}/>
         </div>
     );
 };
