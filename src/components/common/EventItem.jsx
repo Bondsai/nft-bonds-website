@@ -5,8 +5,8 @@ import {IoMdPricetags} from "react-icons/io";
 import PurpleGreenButton from "./buttons/PurpleGreenButton";
 import Image from "./image/Image";
 
-const EventItem = () => {
-    const [isFinished, setIsFinished] = useState(false)
+const EventItem = ({defaultIsFinished}) => {
+    const [isFinished, setIsFinished] = useState(defaultIsFinished)
 
     const time = "5 days"
     const price = "10 backs"
