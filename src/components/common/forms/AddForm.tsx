@@ -1,6 +1,6 @@
 import React from 'react';
-import PurpleGreenButton from "../buttons/PurpleBlueButton";
-import PurpleBlueButton from "../buttons/PurpleBlueButton";
+import BlueGreenButton from "../buttons/BlueGreenButton";
+import PurpleBlueButton from "../buttons/BlueGreenButton";
 
 interface Params {
     placeholder: string
@@ -15,8 +15,8 @@ const AddForm = React.memo<Params>(({placeholder, buttonTitle}) => {
                 <input
                     className="rounded-l-lg p-4 border-t mr-0 border-b border-l text-gray-800 border-gray-200 bg-white"
                     placeholder={placeholder}/>
-                <PurpleGreenButton props>{buttonTitle}
-                </PurpleGreenButton>
+                <BlueGreenButton props>{buttonTitle}
+                </BlueGreenButton>
             </form>
         </div>
     );

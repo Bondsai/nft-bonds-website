@@ -6,7 +6,7 @@ interface ButtonProps {
     onClick?: MouseEventHandler
 }
 
-const PurpleGreenButton: React.FC<ButtonProps> = ({
+const BlueGreenButton: React.FC<ButtonProps> = ({
     title,
     onClick,
 }) => {
@@ -18,4 +18,4 @@ const PurpleGreenButton: React.FC<ButtonProps> = ({
     );
 };
 
-export default PurpleGreenButton;
+export default BlueGreenButton;

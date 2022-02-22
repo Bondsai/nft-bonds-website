@@ -1,6 +1,6 @@
 import React from "react";
-import PurpleGreenButton from "./components/common/buttons/PurpleBlueButton";
-import PurpleBlueButton from "./components/common/buttons/PurpleBlueButton";
+import BlueGreenButton from "./components/common/buttons/BlueGreenButton";
+import PurpleBlueButton from "./components/common/buttons/BlueGreenButton";
 import AddForm from "./components/common/forms/AddForm";
 
 const App: React.FC = () => (
@@ -18,14 +18,14 @@ const App: React.FC = () => (
                 <a href="">Contact Us</a>
             </div>
             {/*AASDASD*/}
-            <div className="flex items-center space-x-2">
-                <PurpleGreenButton>
-                    Sign in
-                </PurpleGreenButton>
-                <PurpleGreenButton>
-                    Sign up
-                </PurpleGreenButton>
-            </div>
+            {/*<div className="flex items-center space-x-2">*/}
+            {/*    <BlueGreenButton>*/}
+            {/*        Sign in*/}
+            {/*    </BlueGreenButton>*/}
+            {/*    <BlueGreenButton>*/}
+            {/*        Sign up*/}
+            {/*    </BlueGreenButton>*/}
+            {/*</div>*/}
         </nav>
 
         <AddForm buttonTitle={"submit"} placeholder={"nft address?"}/>
