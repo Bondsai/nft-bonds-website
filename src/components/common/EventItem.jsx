@@ -2,8 +2,8 @@ import React, {useState} from 'react';
 import {BiTimeFive} from "react-icons/bi";
 import {ImCheckmark} from "react-icons/im";
 import {IoMdPricetags} from "react-icons/io";
-import PurpleGreenButton from "./buttons/PurpleGreenButton";
 import Image from "./image/Image";
+import PurpleBlueButton from "./buttons/PurpleBlueButton";
 
 const EventItem = ({defaultIsFinished}) => {
     const [isFinished, setIsFinished] = useState(defaultIsFinished)
@@ -42,9 +42,7 @@ const EventItem = ({defaultIsFinished}) => {
             </div>
         </div>
         <div className="justify-center flex mb-5 mt-2">
-            <PurpleGreenButton>
-                Learn more
-            </PurpleGreenButton>
+            <PurpleBlueButton onClick={() => console.log('clicked')} title="Learn more"/>
         </div>
     </div>);
 };

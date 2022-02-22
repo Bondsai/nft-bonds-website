@@ -12,7 +12,7 @@ const Navbar = () => {
             <Link to="/event">
                 Basic event
             </Link>
-            <Link to="/event"
+            <Link to="/explore"
                   className="bg-solana-blue rounded-2xl px-5 py-2 text-black font-bold font-archivo"
             >
                 Explore

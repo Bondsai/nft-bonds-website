@@ -4,6 +4,7 @@ import LandingPage from "./pages/LandingPage";
 import NotFoundPage from "./pages/NotFoundPage";
 import EventPage from "./pages/event/EventPage";
 import EventFetcher from "./pages/event/EventFetcher";
+import ExploreBonds from "./pages/ExploreBonds";
 
 const AppRouter = () => {
     return (
@@ -15,6 +16,7 @@ const AppRouter = () => {
 
             {/* Nfts block */}
             <Route path="event" element={<EventFetcher/>}/>
+            <Route path="explore" element={<ExploreBonds/>}/>
             {/*<Route path="nfts/:contractId/:tokenId" element={<PreviewNftPage/>}/>*/}
 
             {/*/!* Collections block *!/*/}
