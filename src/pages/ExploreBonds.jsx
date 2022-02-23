@@ -35,7 +35,7 @@ const ExploreBonds = () => {
     const shownItems = activePage ? activeItems : collectedItems
 
     return (<div>
-        <hr className="bg-sol-white mt-10"/>
+        <hr className="bg-sol-white mt-[18px]"/>
         <div className="grid grid-rows-1 md:grid-cols-3 justify-center">
             <ExploreBondButton title="Active Events" onClick={_ => setActivePage(true)}/>
             <ExploreBondButton title="Completed Events" onClick={_ => setActivePage(false)}/>
