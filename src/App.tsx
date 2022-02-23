@@ -3,9 +3,12 @@ import AppRouter from "./AppRouter";
 import Navbar from "./components/common/navbar/Navbar";
 import {useWalletConnection} from "./hooks/useWalletConnection";
 
-export const AccountContext = React.createContext({
+export const AccountContext = React.createContext<{
+    account: string,
+    changeAccount: (account: string) => any
+}>({
     account: '',
-    changeAccount: (address: string) => console.log("default change account")
+    changeAccount: (a) => console.log(a)
 })
 
 const App: React.FC = () => {
@@ -16,7 +19,7 @@ const App: React.FC = () => {
         () => console.log("Not address found")
     )
 
-    console.log(address)
+
 
     return (
         <AccountContext.Provider value={{

@@ -10,7 +10,7 @@ const ConnectWalletButton: React.FC<ConnectWalletProps> = ({setAccount}) => {
 
     const connect = () => {
         const provider = solanaProvider()
-        provider.connect()
+        provider?.connect({})
             .then((response: any) => {
                     setAccount(response.publicKey.toString())
                 }
