@@ -23,7 +23,7 @@ const EventPage: React.FC<EventScreenProps> = ({
 
     return (
         <div className="max-w-screen-2xl mx-auto">
-            <div className="flex flex-col pt-[50px] px-4 max-w-max mx-auto gap-14">
+            <div className="flex flex-col pt-[50px] px-4 max-w-max mx-auto gap-8 md:gap-14">
                 <div>
                     <EventTitle title={event.name}/>
                     <div className="flex flex-col md:flex-row w-full mt-5 md:mt-10 gap-5">
