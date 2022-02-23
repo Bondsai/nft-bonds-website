@@ -12,7 +12,6 @@ module.exports = {
             'lg': '990px',
             'xl': '1320px',
             '2xl': '1536px',
-            'MAX': '1200px',
 
             'max-xxs': {'max': '310px'},
             'max-xs': {'max': '500px'},
@@ -31,7 +30,6 @@ module.exports = {
                 'sol-purple': 'rgb(152, 91, 256)',
                 'sol-white': 'rgb(174, 185, 196)',
                 'sol-sea' : 'rgb(85, 205, 234)',
-                'sol-sea' : 'rgb(85, 205 234)',
                 'sol-dark-blue': 'rgb(12, 27, 47)',
                 'event-info': '#131823',
                 'gray-inch': '#7e96b8',

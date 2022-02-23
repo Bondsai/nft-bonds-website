@@ -1,22 +1,33 @@
 import React from 'react';
 import {Link} from "react-router-dom";
+import LogoLink from "./LogoLink";
+import ConnectWalletButton from "../auth/ConnectWalletButton";
+import NavigationLink, {LinkProps} from "./NavigationLink";
+
 
 const Navbar = () => {
+
+    const links: LinkProps[] = [
+        {name: "Explore", link: "/explore"},
+        {name: "Create", link: "/create"},
+        {name: "Event", link: "/event"}
+    ]
+
     return (
-        <div className="inline-flex justify-between max-w-screen-MAX z-[100]
-                        fixed top-0 mx-auto w-full bg-black bg-opacity-25 h-[50px]"
-        >
-            <Link to="/" className="text-blue-500 font-archivo font-bold text-lg">
-                Solabond
-            </Link>
-            <Link to="/event">
-                Basic event
-            </Link>
-            <Link to="/explore"
-                  className="bg-solana-blue rounded-2xl px-5 py-2 text-black font-bold font-archivo"
+        <div className="z-[100] fixed top-0 mx-auto w-full flex bg-black backdrop-blur-3xl bg-opacity-10">
+            <div className="max-w-screen-2xl mx-auto inline-flex gap-10 w-full justify-between items-center
+                            my-4
+                            px-2
+                            xs:px-5
+                            md:px-10
+                            2xl:px-0"
             >
-                Explore
-            </Link>
+                <LogoLink/>
+                <div className="inline-flex gap-10">
+                    {links.map(link => <NavigationLink name={link.name} link={link.link}/>)}
+                </div>
+                <ConnectWalletButton/>
+            </div>
         </div>
     );
 };

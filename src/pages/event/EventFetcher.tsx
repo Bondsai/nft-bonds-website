@@ -1,5 +1,5 @@
 import React from 'react';
-import {BondEvent} from "../../models/bondEvent";
+import {BondEvent} from "../../models/BondEvent";
 import EventPage from "./EventPage";
 
 const EventFetcher = () => {
