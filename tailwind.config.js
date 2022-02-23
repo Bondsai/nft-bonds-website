@@ -35,7 +35,8 @@ module.exports = {
                 'sol-dark-blue': 'rgb(12, 27, 47)',
                 'event-info': '#131823',
                 'gray-inch': '#7e96b8',
-                'solana-blue': 'rgb(128, 236, 255)'
+                'solana-blue': 'rgb(128, 236, 255)',
+                'dark-gray': '#131823'
             }
         },
     },

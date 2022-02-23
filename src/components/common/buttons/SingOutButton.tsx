@@ -4,7 +4,7 @@ import {disconnect} from "../../../solana/auth";
 
 const SingOutButton = () => {
     return (
-        <BaseButton extraClasses="rounded-xl bg-[#00585f] hover:bg-[#074755] font-bold text-white w-full py-2"
+        <BaseButton extraClasses="rounded-xl bg-white bg-opacity-90 hover:bg-opacity-100 font-bold text-dark-gray w-full py-2"
                     onClick={disconnect}
         >
             Sign out
