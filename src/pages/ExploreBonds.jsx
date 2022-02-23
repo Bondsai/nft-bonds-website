@@ -52,7 +52,7 @@ const ExploreBonds = () => {
             {shownItems.map(item => <EventItem item={item} key={item.id}/>)}
         </div>
         {isPostsLoading && <ExploreLoader/>}
-        {!canLoad && shownItems.length===0 && <div className="flex justify-center text-sol-white text-6xl m-5">No items</div> }
+        {!canLoad && !isPostsLoading && shownItems.length===0 && <div className="flex justify-center text-sol-white text-6xl m-5">No items</div> }
         <div ref={lastElement}/>
     </div>);
 };
