@@ -6,7 +6,7 @@ import {BondEvent} from "../../models/BondEvent";
 import CollectedBar from "../../components/common/event/bar/CollectedBar";
 import TokenSearchInput from "../../components/common/event/search/TokenSearchInput";
 import SwapTokenButton from "../../components/common/buttons/SwapTokenButton";
-import EventTabBar from "../../components/common/event/EventTabBar";
+import EventTabBar, {EventTab} from "../../components/common/event/EventTabBar";
 
 const MOCK_LOGO = "https://solana.com/_next/image?url=%2Fapi%2Fprojectimg%2Fckwgwiiwq37771eysxdy9y46jc%3Ftype%3DLOGO%26contentType%3D%22image%2Fpng%22&w=1920&q=75"
 
@@ -19,6 +19,7 @@ const EventPage: React.FC<EventScreenProps> = ({
 }) => {
 
     const [searchTokenId, setSearchTokenId] = useState('')
+    const [activeTab, setActiveTab] = useState(EventTab.AllNfts)
 
     return (
         <div className="max-w-screen-2xl mx-auto">
@@ -33,7 +34,7 @@ const EventPage: React.FC<EventScreenProps> = ({
                 {/*              total={event.total}*/}
                 {/*/>*/}
                 <div className="w-full flex justify-center mt-[20px]">
-                    <EventTabBar/>
+                    <EventTabBar activeTab={activeTab} setActiveTab={setActiveTab}/>
                 </div>
                 <div className="space-y-2">
                     <div className="pl-2 text-white font-archivo font-bold">Filter</div>
