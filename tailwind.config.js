@@ -25,7 +25,9 @@ module.exports = {
         extend: {
             colors: {
                 'sol-gray': 'rgb(35, 39, 45)',
-                'sol-gray-light': 'rgb(55, 59, 65)',
+                'sol-gray-button-hover': 'rgb(55, 59, 65)',
+                'sol-gray-button-focus': 'rgb(75, 79, 85)',
+                'sol-gray-button-active': 'rgb(85, 89, 95)',
                 'sol-green': 'rgb(122, 255, 170)',
                 'sol-purple': 'rgb(152, 91, 256)',
                 'sol-white': 'rgb(174, 185, 196)',
