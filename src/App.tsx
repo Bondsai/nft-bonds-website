@@ -1,24 +1,41 @@
-import React from "react";
+import React, {useState} from "react";
 import AppRouter from "./AppRouter";
 import Navbar from "./components/common/navbar/Navbar";
+import {useWalletConnection} from "./hooks/useWalletConnection";
 
-const App: React.FC = () => (
-    <div className="min-h-screen"
-         style={{
-             /* Created with https://www.css-gradient.com */
-             background: 'rgb(35,39,45)',
-             backgroundImage: 'linear-gradient(to top, rgba(0,90,71, 0.15) 0%, rgba(34,39,45,1) 100%)'
-             // backgroundImage:'radial-gradient(rgba(128, 236, 255, 0.2) 0%, rgba(34,39,45,1) 100%)'
-             // background: '#0F2027',
-             // backgroundImage: 'linear-gradient(to right, #16222a, #3a6073)'
+export const AccountContext = React.createContext({
+    account: '',
+    changeAccount: (address: string) => console.log("default change account")
+})
 
-         }}
-    >
-        <Navbar/>
-        <div className="pt-[72px] w-full">
-            <AppRouter/>
-        </div>
-    </div>
-)
+const App: React.FC = () => {
+
+    const [address, setAddress] = useState('')
+    useWalletConnection(
+        setAddress,
+        () => console.log("Not address found")
+    )
+
+    console.log(address)
+
+    return (
+        <AccountContext.Provider value={{
+            account: address,
+            changeAccount: setAddress
+        }}>
+            <div className="min-h-screen"
+                 style={{
+                     background: 'rgb(35,39,45)',
+                     backgroundImage: 'linear-gradient(to left bottom, #131823, #152635, #123646, #074755, #00585f, #00585f, #00585f, #00585f, #074755, #123646, #152635, #131823)'
+                 }}
+            >
+                <Navbar/>
+                <div className="pt-[72px] w-full">
+                    <AppRouter/>
+                </div>
+            </div>
+        </AccountContext.Provider>
+    )
+}
 
 export default App;

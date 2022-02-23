@@ -1,15 +1,19 @@
 import React from 'react';
-import {Link} from "react-router-dom";
 import LogoLink from "./LogoLink";
 import ConnectWalletButton from "../auth/ConnectWalletButton";
 import NavigationLink, {LinkProps} from "./NavigationLink";
+
+import {CgNotes} from 'react-icons/cg'
+import {BsFileEarmarkPlus} from 'react-icons/bs'
+import {AccountContext} from "../../../App";
+import {BiWallet} from "react-icons/bi";
 
 
 const Navbar = () => {
 
     const links: LinkProps[] = [
-        {name: "Explore", link: "/explore"},
-        {name: "Create", link: "/create"},
+        {name: "Explore", link: "/explore", icon: <CgNotes/>},
+        {name: "Create", link: "/create", icon: <BsFileEarmarkPlus/>},
         {name: "Event", link: "/event"}
     ]
 
@@ -24,9 +28,21 @@ const Navbar = () => {
             >
                 <LogoLink/>
                 <div className="inline-flex gap-10">
-                    {links.map(link => <NavigationLink name={link.name} link={link.link}/>)}
+                    {links.map(link =>
+                        <NavigationLink name={link.name}
+                                        link={link.link}
+                                        icon={link.icon}
+                        />
+                    )}
                 </div>
-                <ConnectWalletButton/>
+                <AccountContext.Consumer>
+                    {({account, changeAccount}) =>
+                        (account
+                                ? <BiWallet color="white" size={30}/>
+                                : <ConnectWalletButton setAccount={changeAccount}/>
+                        )
+                    }
+                </AccountContext.Consumer>
             </div>
         </div>
     );
