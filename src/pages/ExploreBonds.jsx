@@ -20,7 +20,7 @@ const ExploreBonds = () => {
         const response = await ServiceDB.getFivePost(items.length === 0 ? 0 : items[items.length - 1].id)
         setItems([...items, ...response])
     })
-
+    
     useObserver(lastElement, canLoad, isPostsLoading, () => {
         setPage(page + 1)
     })

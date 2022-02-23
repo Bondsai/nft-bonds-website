@@ -12,7 +12,6 @@ module.exports = {
             'lg': '990px',
             'xl': '1320px',
             '2xl': '1536px',
-            'MAX': '1200px',
 
             'max-xxs': {'max': '310px'},
             'max-xs': {'max': '500px'},

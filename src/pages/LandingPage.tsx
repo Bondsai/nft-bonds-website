@@ -1,10 +1,10 @@
 import React from 'react';
 
+const bonsai = require('../resources/bonsai.jpeg')
+
 const LandingPage = () => {
     return (
-        <div>
-            Landing page
-        </div>
+        <img src={bonsai}/>
     );
 };
 

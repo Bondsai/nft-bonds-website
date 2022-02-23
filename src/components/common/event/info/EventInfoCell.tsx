@@ -15,12 +15,12 @@ const EventInfoCell = React.memo<EventInfoCellProps>(({
 }) => {
     return (
         <>
-            <div className="text-white opacity-90 font-archivo font-semibold py-[16px] flex flex-col gap-[12px]">
-                <div className="inline-flex gap-2 items-center opacity-70"
-                     data-tip={description}
-                >
+            <div className="text-white opacity-90 font-archivo font-semibold md:px-[24px] max-md:py-[16px]
+                            flex flex-col gap-[12px]"
+            >
+                <div className="inline-flex gap-2 items-center opacity-70">
                     {name}
-                    <div data-tip={description}>
+                    <div data-tip={description} className="cursor-pointer">
                         <AiOutlineExclamationCircle size={14}/>
                     </div>
                     <ReactTooltip className='text-sm' type='dark' place='right' delayShow={200}/>
