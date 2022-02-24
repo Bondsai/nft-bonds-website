@@ -35,7 +35,7 @@ const CreatePage = () => {
             {/*hidden, shown on button click using DOM, probably need to change to match React guidelines?*/}
             <Modal rows={rows}/>
 
-            <FloatingLabelInput inputType={"number"} placeholder={"Vesting period"}/>
+            {/*<FloatingLabelInput inputType={"number"} placeholder={"Vesting period"}/>*/}
 
             {/*// <div*/}
             {/*//     style = {{backgroundColor: 'rgba(0, 0, 0, 0.8)'}}*/}
