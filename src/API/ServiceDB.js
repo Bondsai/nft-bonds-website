@@ -4,7 +4,7 @@ export default class ServiceDB {
     }
 
     static async getFivePost(lastId) {
-        await ServiceDB.sleep(1000)
+        await ServiceDB.sleep(100)
         return [
             {id: lastId + 1, isFinished: true, name: `Company ${lastId + 1}`},
             {id: lastId + 2, isFinished: false, name: `Company ${lastId + 2}`},
