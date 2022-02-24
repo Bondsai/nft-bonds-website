@@ -1,31 +1,44 @@
-import React from "react";
-import BlueGreenButton from "./components/common/buttons/BlueGreenButton";
-import NftTable from "./components/common/forms/NftTable";
+import React, {useState} from "react";
+import AppRouter from "./AppRouter";
+import Navbar from "./components/common/navbar/Navbar";
+import {useWalletConnection} from "./hooks/useWalletConnection";
 
-const App: React.FC = () => (
-    <div className="min-h-screen">
-        <nav className="container flex justify-around py-4 border-b-4 border-white-500 mx-auto bg-sol-gray">
-            <div className="flex items-center">
-                <h2 className="font-medium text-blue-500">Solabond</h2>
-            </div>
-            {/*left*/}
-            <div className="items-center hidden space-x-8 lg:flex text-white">
-                <a href="">Home</a>
-                <a href="">About Us</a>
-                <a href="">Blogs</a>
-                <a href="">Our Team</a>
-                <a href="">Contact Us</a>
-            </div>
-            <div className="flex items-center space-x-2">
-                <BlueGreenButton title={"sign in"}>
-                </BlueGreenButton>
-                <BlueGreenButton title={"sign up"}>
-                </BlueGreenButton>
-            </div>
-        </nav>
+export const AccountContext = React.createContext<{
+    account: string,
+    changeAccount: (account: string) => any
+}>({
+    account: '',
+    changeAccount: (a) => console.log(a)
+})
 
-        <NftTable/>
-    </div>
-)
+const App: React.FC = () => {
+
+    const [address, setAddress] = useState('')
+    useWalletConnection(
+        setAddress,
+        () => console.log("Not address found")
+    )
+
+
+
+    return (
+        <AccountContext.Provider value={{
+            account: address,
+            changeAccount: setAddress
+        }}>
+            <div className="min-h-screen"
+                 style={{
+                     background: 'rgb(35,39,45)',
+                     backgroundImage: 'linear-gradient(to left bottom, #131823, #152635, #123646, #074755, #00585f, #00585f, #00585f, #00585f, #074755, #123646, #152635, #131823)'
+                 }}
+            >
+                <Navbar/>
+                <div className="pt-[72px] w-full">
+                    <AppRouter/>
+                </div>
+            </div>
+        </AccountContext.Provider>
+    )
+}
 
 export default App;

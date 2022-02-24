@@ -9,7 +9,7 @@ const EventTitle = React.memo<EventTitleProps>(({
     title
 }) => {
     return (
-        <div className="text-sol-white text-xl font-archivo">
+        <div className="text-white text-2xl lg:text-4xl font-archivo font-bold">
             {title}
         </div>
     );

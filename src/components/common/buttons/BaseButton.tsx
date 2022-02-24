@@ -11,7 +11,7 @@ const BaseButton: React.FC<ButtonProps &
     ...props
 }) => {
     return (
-        <button className={"px-7 py-2 font-medium data-modal-toggle=\"defaultModal\" " + extraClasses}
+        <button className={"px-7 py-[4px] " + extraClasses}
                 {...props}
         >
             {children}
