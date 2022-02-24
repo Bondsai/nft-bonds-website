@@ -3,8 +3,6 @@ import AddForm from "./AddForm";
 import NftListVerbose from "./NftListVerbose";
 import Modal from "./Modal";
 
-// import NftModal from "./NftModal";
-
 export interface Row {
     id: number,
     text: string
@@ -14,13 +12,12 @@ export interface Rows {
     rows: Row[]
 }
 
-const NftTable = () => {
+const CreatePage = () => {
     const [nftAddress, setNftAddress] = useState('')
     const [rows, setRows] = useState<Row[]>([])
 
     const addNewRow = (e: React.MouseEvent<HTMLButtonElement>) => {
         e.preventDefault()
-        // change id to something usable, like (?) nft hash
         setRows([...rows, {id: rows.length + 1, text: nftAddress}])
     }
 
@@ -34,7 +31,7 @@ const NftTable = () => {
             <AddForm setNftAddress={setNftAddress} submitNftAddress={addNewRow}/>
             <NftListVerbose rows={rows} removeRow={removeRow}/>
 
-            {/*hidden, shown on button click using DOM, probably need to change to match react guidelines?*/}
+            {/*hidden, shown on button click using DOM, probably need to change to match React guidelines?*/}
             <Modal rows={rows}/>
 
                 {/*// <div*/}
@@ -42,7 +39,7 @@ const NftTable = () => {
                 {/*//     className='fixed inset-0 z-50 flex items-center p-4 '>*/}
                 {/*//     <div className="flex mx-auto justify-center bg-blue-50">*/}
                 {/*//         <BlueGreenButton title={'asd'}>*/}
-                {/*//             Hahaha*/}
+                {/*//             Hello world*/}
                 {/*//         </BlueGreenButton>*/}
                 {/*//     </div>*/}
                 {/*// </div>*/}
@@ -50,4 +47,4 @@ const NftTable = () => {
     );
 };
 
-export default NftTable;
+export default CreatePage;

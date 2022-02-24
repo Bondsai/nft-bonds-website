@@ -3,10 +3,10 @@ import {BiTimeFive} from "react-icons/bi";
 import {ImCheckmark} from "react-icons/im";
 import {IoMdPricetags} from "react-icons/io";
 import ItemImage from "./image/ItemImage";
-import PurpleBlueButton from "./buttons/PurpleBlueButton";
+import BlueGreenButton from "./buttons/BlueGreenButton";
 
 const EventItem = ({item}) => {
-    const [isFinished, setIsFinished] = useState(item.isFinished)
+    const [isFinished] = useState(item.isFinished)
 
     const time = "5 days"
     const price = "10 backs"
@@ -44,7 +44,7 @@ const EventItem = ({item}) => {
                 </div>
             </div>
             <div className="justify-center flex mb-5 mt-2">
-                <PurpleBlueButton onClick={() => console.log('clicked')} title="Learn more"/>
+                <BlueGreenButton onClick={() => console.log('clicked')} title="Learn more"/>
             </div>
         </div>
     );
