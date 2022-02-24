@@ -2,6 +2,7 @@ import React, {useState} from "react";
 import AppRouter from "./AppRouter";
 import Navbar from "./components/common/navbar/Navbar";
 import {useWalletConnection} from "./hooks/useWalletConnection";
+import Background from "./components/common/Background";
 
 export const AccountContext = React.createContext<{
     account: string,
@@ -19,23 +20,18 @@ const App: React.FC = () => {
         () => console.log("Not address found")
     )
 
-
-
     return (
         <AccountContext.Provider value={{
             account: address,
             changeAccount: setAddress
         }}>
-            <div className="min-h-screen"
-                 style={{
-                     background: 'rgb(35,39,45)',
-                     backgroundImage: 'linear-gradient(to left bottom, #131823, #152635, #123646, #074755, #00585f, #00585f, #00585f, #00585f, #074755, #123646, #152635, #131823)'
-                 }}
-            >
+            <div>
+                <Background/>
                 <Navbar/>
-                <div className="pt-[72px] w-full">
+                <div className="pt-[72px] position:absolute">
                     <AppRouter/>
                 </div>
+
             </div>
         </AccountContext.Provider>
     )
