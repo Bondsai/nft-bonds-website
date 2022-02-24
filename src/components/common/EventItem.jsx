@@ -43,22 +43,22 @@ const EventItem = ({item}) => {
                 }
                 <Slider className="z-0" itemsUrls={images}/>
             </div>
-            <div className="text-sol-white text-xl font-bold truncate hover:text-clip px-5 text-center">
+            <div className="text-sol-white text-xl font-bold truncate hover:text-clip px-5 text-center font-archivo">
                 {item.owner}
             </div>
-            <div className="text-sol-white justify-center flex px-1">
+            <div className="text-sol-white justify-center flex px-1 font-archivo">
                 <IoMdPricetags className="mt-1 mr-1"/>
                 <div>
                     price: {item.sale} {item.currency}
                 </div>
             </div>
-            <div className="text-sol-white justify-center flex px-1">
+            <div className="text-sol-white justify-center flex px-1 font-archivo">
                 <BiTimeFive className="mt-1 mr-1"/>
                 <div>
                     time to unlock: {time}
                 </div>
             </div>
-            <div className="text-sol-white justify-center flex px-1">
+            <div className="text-sol-white justify-center flex px-1 font-archivo">
                 <ImCheckmark className="mt-1 mr-1"/>
                 <div>
                     Collected: {collected}/{all}
