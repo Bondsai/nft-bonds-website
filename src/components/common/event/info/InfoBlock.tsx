@@ -12,7 +12,7 @@ const InfoBlock = React.memo<EventInfoBlockProps>(({
     endTimestamp
 }) => {
     return (
-        <div className="rounded-2xl bg-[#131823]
+        <div className="rounded-2xl bg-gray-900
                         flex flex-col px-[16px] py-[24px] w-[350px]
                         lg:flex-row lg:px-[24px] lg:py-[16px] lg:w-full"
         >

@@ -49,7 +49,7 @@ const EventPage: React.FC<EventScreenProps> = ({
     const [activeTab, setActiveTab] = useState(EventTab.AllNfts)
 
     return (
-        <div className="max-w-screen-2xl relative m-auto z-[10] h-auto overflow-auto flex">
+        <div className="max-w-screen-2xl relative m-auto z-[10] h-auto flex">
             <div className="flex flex-col pt-[50px] px-4 max-w-max mx-auto gap-8 md:gap-14">
                 <div>
                     <EventTitle title={event.name}/>
