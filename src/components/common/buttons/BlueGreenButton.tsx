@@ -1,5 +1,5 @@
 import React, {MouseEventHandler} from 'react';
-import BaseButton from "./BaseButtons";
+import BaseButton from "./BaseButton";
 
 interface ButtonProps {
     title: string | number
@@ -11,7 +11,7 @@ const BlueGreenButton: React.FC<ButtonProps> = ({
     onClick,
 }) => {
     return (
-        <BaseButton extraClasses="bg-gradient-to-br from-sol-green text-sm to-blue-500 text-white"
+        <BaseButton extraClasses="bg-gradient-to-br from-sol-green text-sm to-blue-500 text-white rounded-xl"
                     onClick={onClick}>
             {title}
         </BaseButton>

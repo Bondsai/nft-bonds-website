@@ -4,14 +4,14 @@ interface ButtonProps {
     extraClasses?: string
 }
 
-const BaseButtons: React.FC<ButtonProps &
+const BaseButton: React.FC<ButtonProps &
     React.DetailedHTMLProps<React.ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement>> = ({
     extraClasses,
     children,
     ...props
 }) => {
     return (
-        <button className={"px-7 py-[4px]" + extraClasses}
+        <button className={"px-7 py-2 font-medium data-modal-toggle=\"defaultModal\" " + extraClasses}
                 {...props}
         >
             {children}
@@ -19,4 +19,4 @@ const BaseButtons: React.FC<ButtonProps &
     );
 };
 
-export default BaseButtons;
+export default BaseButton;
