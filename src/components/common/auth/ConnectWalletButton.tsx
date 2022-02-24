@@ -10,12 +10,13 @@ const ConnectWalletButton: React.FC<ConnectWalletProps> = ({setAccount}) => {
 
     const connect = () => {
         const provider = solanaProvider()
-        provider?.connect({})
-            .then((response: any) => {
-                    setAccount(response.publicKey.toString())
-                }
-            )
-            .catch((e:any) => alert(e))
+        if (!provider) {
+            window.open("https://phantom.app/", "_blank")
+            return
+        }
+        provider.connect({})
+            .then(response => setAccount(response.publicKey.toString()))
+            .catch(() => console.log("Phantom auth error"))
     }
 
     return (

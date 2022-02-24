@@ -31,7 +31,8 @@ const Navbar = () => {
                 <LogoLink/>
                 <div className="inline-flex gap-10">
                     {links.map(link =>
-                        <NavigationLink name={link.name}
+                        <NavigationLink key={link.name}
+                                        name={link.name}
                                         link={link.link}
                                         icon={link.icon}
                         />
