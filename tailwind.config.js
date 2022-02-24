@@ -1,5 +1,5 @@
 module.exports = {
-    content: ["./src/**/*.{html,js,jsx,tsx,ts}"],
+    content: ["./src/**/*.{html,js,jsx,tsx,ts}", './node_modules/tw-elements/dist/js/**/*.js'],
     theme: {
         fontFamily: {
             'archivo': ['Archivo'],
@@ -34,11 +34,11 @@ module.exports = {
                 'sol-white': 'rgb(174, 185, 196)',
                 'sol-sea' : 'rgb(85, 205, 234)',
                 'sol-dark-blue': 'rgb(12, 27, 47)',
-                'event-info': '#131823',
                 'gray-inch': '#7e96b8',
-                'solana-blue': 'rgb(128, 236, 255)'
+                'solana-blue': 'rgb(128, 236, 255)',
+                'dark-gray': '#131823',
             }
         },
     },
-    plugins: [],
+    plugins: [require('tw-elements/dist/plugin')],
 }

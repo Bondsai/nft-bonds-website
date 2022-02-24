@@ -1,6 +1,6 @@
 import React from 'react';
-import CompletedBar from "./bar/CompletedBar";
-import ProgressingBar from "./bar/ProgressingBar";
+import CompletedBar from "./CompletedBar";
+import ProgressingBar from "./ProgressingBar";
 
 
 interface CollectedBarProps {
