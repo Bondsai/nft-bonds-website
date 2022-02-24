@@ -1,12 +1,11 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 
 import InfoBlock from "../../components/common/event/info/InfoBlock";
 import EventTitle from "../../components/common/event/EventTitle";
 import {BondEvent} from "../../models/BondEvent";
-import CollectedBar from "../../components/common/event/bar/CollectedBar";
 import TokenSearchInput from "../../components/common/event/search/TokenSearchInput";
-import SwapTokenButton from "../../components/common/buttons/SwapTokenButton";
 import EventTabBar, {EventTab} from "../../components/common/event/EventTabBar";
+import {getMetadata, getNFT} from "../../API/solana/requests";
 
 const MOCK_LOGO = "https://solana.com/_next/image?url=%2Fapi%2Fprojectimg%2Fckwgwiiwq37771eysxdy9y46jc%3Ftype%3DLOGO%26contentType%3D%22image%2Fpng%22&w=1920&q=75"
 
@@ -17,6 +16,11 @@ interface EventScreenProps {
 const EventPage: React.FC<EventScreenProps> = ({
     event
 }) => {
+
+    useEffect(() => {
+        console.log("GET")
+        getNFT("7mRLptNjdyiZxH8d3UHrRLKr5iynDrkJKma5pGeC2v7d").then(console.log)
+    }, [])
 
     const [searchTokenId, setSearchTokenId] = useState('')
     const [activeTab, setActiveTab] = useState(EventTab.AllNfts)
