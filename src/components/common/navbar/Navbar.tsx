@@ -20,7 +20,7 @@ const Navbar = () => {
     ]
 
     return (
-        <div className="z-[100] fixed top-0 mx-auto w-full flex bg-black backdrop-blur-3xl bg-opacity-80">
+        <div className="z-[40] sticky top-0 mx-auto w-full flex bg-black backdrop-blur-3xl bg-opacity-80">
             <div className="max-w-screen-2xl mx-auto inline-flex gap-10 w-full justify-between items-center
                             my-4
                             px-2
