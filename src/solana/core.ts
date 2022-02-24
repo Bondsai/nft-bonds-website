@@ -14,11 +14,6 @@ interface Phantom {
     on: (event: Event, callback: () => void) => void;
 }
 
-// const ConnectToPhantom = () => {
-//     const connectHandler = () => {
-//         phantom?.connect();
-//     };
-
 export const solanaProvider = (): Phantom | undefined => {
     const windowRef = window as any
     if ("solana" in window) {
