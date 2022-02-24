@@ -20,18 +20,19 @@ const App: React.FC = () => {
         () => console.log("Not address found")
     )
 
-
     return (
         <AccountContext.Provider value={{
             account: address,
             changeAccount: setAddress
         }}>
-            <Background>
+            <div>
+                <Background/>
                 <Navbar/>
                 <div className="pt-[72px] position:absolute">
                     <AppRouter/>
                 </div>
-            </Background>
+
+            </div>
         </AccountContext.Provider>
     )
 }
