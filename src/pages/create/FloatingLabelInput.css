@@ -1,0 +1,4 @@
+input:focus + .floating-label
+{
+    color: red;
+}

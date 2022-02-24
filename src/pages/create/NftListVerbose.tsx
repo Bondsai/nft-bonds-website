@@ -18,19 +18,19 @@ const NftListVerbose: React.FC<Props> = ({rows, removeRow}) => {
                             <thead className="bg-dark-gray">
                             <tr>
                                 <th scope="col"
-                                    className="text-white opacity-90 font-archivo font-semibold py-3 px-6 tracking-wider text-left uppercase text-gray-400">
+                                    className="opacity-70 font-archivo font-semibold tracking-wider text-left uppercase text-white py-3 px-6">
                                     Name
                                 </th>
                                 <th scope="col"
-                                    className="py-3 px-6 text-xs font-medium tracking-wider text-left uppercase text-gray-400">
+                                    className="opacity-70 font-archivo font-semibold tracking-wider text-left uppercase text-white py-3 px-6">
                                     Color
                                 </th>
                                 <th scope="col"
-                                    className="py-3 px-6 text-xs font-medium tracking-wider text-left uppercase text-gray-400">
+                                    className="opacity-70 font-archivo font-semibold tracking-wider text-left uppercase text-white py-3 px-6">
                                     Category
                                 </th>
                                 <th scope="col"
-                                    className="py-3 px-6 text-xs font-medium tracking-wider text-left uppercase text-gray-400">
+                                    className="opacity-70 font-archivo font-semibold tracking-wider text-left uppercase text-white py-3 px-6">
                                     Price
                                 </th>
                                 <th scope="col" className="relative py-3 px-6">
