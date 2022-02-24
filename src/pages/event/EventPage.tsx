@@ -67,12 +67,13 @@ const EventPage: React.FC<EventScreenProps> = ({
                     <TokenSearchInput tokenId={searchTokenId} setTokenId={setSearchTokenId}/>
                 </div>
                 <div className="mb-[30px]">
-                    <div className="flex flex-col gap-0 bg-dark-gray rounded-2xl
+                    <div className="flex flex-col gap-0 bg-gray-900 rounded-2xl
                                     px-[12px] md:px-[24px] overflow-hidden mb-10"
                     >
                         {tokens.map((token, index) =>
                             <>
                                 <EventNftLine key={token.meta.pubkey.toString()}
+                                              mintAddress={token.meta.data.mint}
                                               name={token.meta.data.data.name}
                                               isCollected={true}
                                               image={token.image}
