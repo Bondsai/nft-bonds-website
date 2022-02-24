@@ -26,7 +26,7 @@ const Navbar = () => {
                             px-2
                             xs:px-5
                             md:px-10
-                            2xl:px-0"
+                            2xl:px-10"
             >
                 <LogoLink/>
                 <div className="inline-flex gap-10">
