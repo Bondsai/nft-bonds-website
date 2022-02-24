@@ -48,7 +48,7 @@ const ExploreBonds = () => {
         </div>
         <hr className="bg-sol-white"/>
         <div
-            className="grid grid-cols-1 xs:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 justify-center">
+            className="grid grid-cols-1 xs:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 justify-center">
             {shownItems.map(item => <EventItem item={item} key={item.id}/>)}
         </div>
         {isPostsLoading && <ExploreLoader/>}
