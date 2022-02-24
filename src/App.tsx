@@ -26,14 +26,12 @@ const App: React.FC = () => {
             account: address,
             changeAccount: setAddress
         }}>
-            <div className="min-h-screen">
-                <Background>
-                    <Navbar/>
-                    <div className="pt-[72px] position:absolute">
-                        <AppRouter/>
-                    </div>
-                </Background>
-            </div>
+            <Background>
+                <Navbar/>
+                <div className="pt-[72px] position:absolute">
+                    <AppRouter/>
+                </div>
+            </Background>
         </AccountContext.Provider>
     )
 }
