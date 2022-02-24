@@ -27,8 +27,7 @@ const SignedInProfilePage = React.memo<ProfileProps>(({
                                           min-w-[240px]
                                           lg:min-w-[250px]
                                           border-l-[1px]
-                                          border-[#27acb7]
-                                          "
+                                          border-l-sol-white"
                 >
                     <div className="font-archivo">
                         <div className="mb-20">
