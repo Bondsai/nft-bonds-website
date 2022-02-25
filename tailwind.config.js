@@ -39,6 +39,7 @@ module.exports = {
                 '158px' : '158px'
             },
             colors: {
+                'cyan-300': '#67e8f9',
                 'sol-gray': 'rgb(35, 39, 45)',
                 'sol-gray-input-hover': 'rgb(55, 59, 65)',
                 'sol-gray-button-hover': 'rgba(85, 89, 95, 0.5)',

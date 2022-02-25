@@ -19,7 +19,7 @@ const LandingPage = () => {
     return (
         <div>
             <div className="bg-black flex justify-between bg-opacity-80">
-                <div className="h-full w-full min-w-[150px] flex flex-col justify-around mt-[10%]">
+                <div className="h-full w-full min-w-150px flex flex-col justify-around mt-[10%]">
                     <div className="text-sol-white text-center font-archivo flex items-center justify-center
                     text-xl m-5 xs:text-2xl sm:text-4xl md:text-6xl lg:text-7xl xl:text-8xl 2xl:text-9xl ">
                         Just Bond It!
