@@ -6,7 +6,7 @@ import {TypeDef} from "@project-serum/anchor/dist/cjs/program/namespace/types";
 import {IdlTypeDef} from "@project-serum/anchor/dist/cjs/idl";
 
 export interface EventResponse {
-    authority: PublicKey,
+    authority: PublicKey
     bump: number
     collectedTokensAmount: BN
     duration: number
