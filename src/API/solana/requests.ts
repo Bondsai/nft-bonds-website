@@ -1,6 +1,6 @@
-import {Connection, PublicKey} from "@solana/web3.js";
+import {clusterApiUrl, Connection, PublicKey} from "@solana/web3.js";
 import {Metadata} from "@metaplex-foundation/mpl-token-metadata";
-import {getConnectionURL, Network} from "./core";
+import {Network} from "./core";
 
 export interface ImageTokenMetadata {
     image?: string,
@@ -11,7 +11,7 @@ export const getMetadata = async (
     mintAddress: string,
     network: Network = Network.Mainnet
 ) => {
-    const connectionURL = getConnectionURL(network)
+    const connectionURL = clusterApiUrl(network)
     const minPublicKey = new PublicKey(mintAddress);
     const tokenMetaPublicKey = await Metadata.getPDA(minPublicKey);
     const connection = new Connection(connectionURL)

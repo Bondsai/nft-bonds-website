@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {BiWallet} from 'react-icons/bi'
 import {solanaProvider} from "../../../solana/core";
 
