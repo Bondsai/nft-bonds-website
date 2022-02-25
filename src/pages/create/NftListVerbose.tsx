@@ -1,5 +1,8 @@
 import React from "react";
+import "./CreatePage.css"
 import {Row} from "./CreatePage";
+import {IconContext} from "react-icons";
+import {ImCross} from "react-icons/im";
 
 interface Props {
     rows: Row[]
@@ -11,7 +14,7 @@ interface Props {
 const NftListVerbose: React.FC<Props> = ({rows, removeRow}) => {
     return (
         <div>
-            <div className="overflow-x-auto sm:-mx-6 lg:-mx-8">
+            <div className="overflow-x-auto sm:-mx-6 lg:-mx-8 mb-10">
                 <div className="inline-block py-2 min-w-full sm:px-6 lg:px-8">
                     <div className="overflow-hidden shadow-md sm:rounded-lg">
                         <table className="min-w-full">
@@ -54,14 +57,17 @@ const NftListVerbose: React.FC<Props> = ({rows, removeRow}) => {
                                         <td className="py-4 px-6 text-sm whitespace-nowrap text-gray-400">
                                             $2999
                                         </td>
-                                        <td className="py-4 px-6 text-sm font-medium text-right whitespace-nowrap">
-                                            <a
-                                                href="#"
-                                                onClick={(e) => {
-                                                    e.preventDefault()
-                                                    removeRow(row.id)
-                                                }}
-                                                className="text-red-600 hover:underline">delete</a>
+                                        <td className="py-4 px-6 whitespace-nowrap">
+                                            <IconContext.Provider
+                                                value={{color: "white"}}>
+                                                <ImCross
+                                                    className="cross-icon mx-auto transition ease-in-out delay-50 hover:scale-125 duration-300"
+                                                    onClick={(e) => {
+                                                        e.preventDefault()
+                                                        removeRow(row.id)
+                                                    }}
+                                                />
+                                            </IconContext.Provider>
                                         </td>
                                     </tr>
                             ))}

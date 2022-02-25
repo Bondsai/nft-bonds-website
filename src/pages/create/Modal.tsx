@@ -2,11 +2,6 @@ import NftListSimple from "./NftListSimple";
 import React from "react";
 import {Rows} from "./CreatePage";
 
-// created using tailwind-elements ("tw-elements": "^1.0.0-alpha11", in package.json)
-// buttons should be taken out in order to be re-used as components?
-// to be honest too much stuff happening in here, no idea how tw-elements library works
-// but at least its working!
-
 const Modal: React.FC<Rows> = ({rows}) => {
     return (
         <div
