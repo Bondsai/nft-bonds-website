@@ -9,7 +9,7 @@ import CreatePage from "./pages/create/CreatePage";
 const AppRouter = () => {
     return (
         <Routes>
-            <Route path="/" element={<LandingPage/>}/>
+            <Route path="/" element={<ExploreBonds/>}/>
             <Route path="event" element={<EventFetcher/>}/>
             <Route path="create" element={<CreatePage/>}/>
             <Route path="explore" element={<ExploreBonds/>}/>

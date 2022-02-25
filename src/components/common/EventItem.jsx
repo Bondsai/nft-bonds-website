@@ -28,7 +28,7 @@ const EventItem = ({item}) => {
     const collected = '?'
 
     return (
-        <div className="border-solid border-2 border-sol-white rounded-lg w-60 h-100 m-5 transition-shadow">
+        <div className="border-solid border-2 border-sol-white rounded-lg w-60 h-100 m-5 transition-shadow bg-gray-900">
             <div className="border-solid border-2 border-sol-white rounded-lg h-40 mx-5 mt-5 mb-2">
                 {item.isFinished &&
                     <div
