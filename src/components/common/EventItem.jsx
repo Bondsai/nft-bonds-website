@@ -33,7 +33,7 @@ const EventItem = ({item}) => {
             <div className="border-gradient-pic h-40 mx-5 mt-5 mb-2">
                 {item.isFinished &&
                     <ImCheckmark
-                        className="z-10 p-2 bg-blend-overlay text-2xl justify-center flex absolute w-10 h-10 bg-sol-sea text-white rounded-tr-md rounded-bl-md ml-[158px]">
+                        className="z-10 p-2 bg-blend-overlay text-2xl justify-center flex absolute w-10 h-10 bg-sol-sea text-white rounded-tr-md rounded-bl-md ml-158px">
                     </ImCheckmark>
                 }
                 {images.length === 0 &&
