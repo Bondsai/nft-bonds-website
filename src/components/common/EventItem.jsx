@@ -5,8 +5,8 @@ import {IoMdPricetags} from "react-icons/io";
 import Slider from "./slider/Slider";
 import BlueGreenButton from "./buttons/BlueGreenButton";
 import {getNFT} from "../../solana/requests";
-import SmallLoader from "./loader/SmallLoader";
 import "../../styles.css"
+import NewSmallLoader from "./loader/NewSmallLoader";
 
 const EventItem = ({item}) => {
     const [images, setImages] = useState([])
@@ -38,7 +38,7 @@ const EventItem = ({item}) => {
                 }
                 {images.length === 0 &&
                     <div className="object-center w-full h-40">
-                        <SmallLoader/>
+                        <NewSmallLoader/>
                     </div>
                 }
                 <Slider className="z-0" itemsUrls={images}/>

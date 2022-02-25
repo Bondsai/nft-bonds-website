@@ -5,11 +5,11 @@ import EventTitle from "../../components/common/event/EventTitle";
 import TokenSearchInput from "../../components/common/event/search/TokenSearchInput";
 import EventTabBar, {EventTab} from "../../components/common/event/EventTabBar";
 import EventNftLine from "../../components/common/nft/EventNftLine";
-import {useAppDispatch, useAppSelector} from "../../hooks/redux";
-import SmallLoader from "../../components/common/loader/SmallLoader";
-import {useObserver} from "../../hooks/useObserver";
 import "../../styles.css"
 import {EventResponse} from "../../solana/rpc/getEvent";
+import "../../styles.css"
+import NewSmallLoader from "../../components/common/loader/NewSmallLoader";
+
 
 interface EventScreenProps {
     event: EventResponse,
@@ -19,10 +19,12 @@ const EventPage: React.FC<EventScreenProps> = ({
     event
 }) => {
 
-    const {tokens, fetching} = useAppSelector(state => state.eventPreview)
-    const lastElement = useRef<HTMLDivElement>(null)
+    // const {event, fetching} = useAppSelector(state => state.eventPreview)
+    // const lastElement = useRef<HTMLDivElement>(null)
+    //
+    // const dispatch = useAppDispatch()
 
-    const dispatch = useAppDispatch()
+
 
     // useObserver(lastElement, true, fetching, () => {
     //     dispatch(fetchEventTokens(tokenIDs))
@@ -65,27 +67,27 @@ const EventPage: React.FC<EventScreenProps> = ({
                     <TokenSearchInput tokenId={searchTokenId} setTokenId={setSearchTokenId}/>
                 </div>
                 <div className="mb-7">
-                    <div className="flex flex-col bg-gray-900 rounded-2xl
-                                    px-3 md:px-6 overflow-hidden mb-10"
-                    >
-                        {tokens.map((token, index) =>
-                            <>
-                                <EventNftLine key={token.meta.pubkey.toString()}
-                                              mintAddress={token.meta.data.mint}
-                                              name={token.meta.data.data.name}
-                                              isCollected={true}
-                                              image={token.image}
-                                />
-                                {index !== tokens.length - 1 && <hr className="hr-color"/>}
-                            </>
-                        )}
-                    </div>
-                    {fetching
-                        ? <div className="pb-9">
-                            <SmallLoader/>
-                            </div>
-                        : <div ref={lastElement}/>
-                    }
+                    {/*<div className="flex flex-col bg-gray-900 rounded-2xl*/}
+                    {/*                px-3 md:px-6 overflow-hidden mb-10"*/}
+                    {/*>*/}
+                    {/*    {tokens.map((token, index) =>*/}
+                    {/*        <>*/}
+                    {/*            <EventNftLine key={token.meta.pubkey.toString()}*/}
+                    {/*                          mintAddress={token.meta.data.mint}*/}
+                    {/*                          name={token.meta.data.data.name}*/}
+                    {/*                          isCollected={true}*/}
+                    {/*                          image={token.image}*/}
+                    {/*            />*/}
+                    {/*            {index !== tokens.length - 1 && <hr className="hr-color"/>}*/}
+                    {/*        </>*/}
+                    {/*    )}*/}
+                    {/*</div>*/}
+                    {/*{fetching*/}
+                    {/*    ? <div className="pb-9">*/}
+                    {/*        <NewSmallLoader/>*/}
+                    {/*        </div>*/}
+                    {/*    : <div ref={lastElement}/>*/}
+                    {/*}*/}
                 </div>
             </div>
         </div>
