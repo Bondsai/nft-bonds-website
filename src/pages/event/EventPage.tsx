@@ -11,6 +11,7 @@ import {fetchEventTokens} from "../../store/event/thunk";
 import {eventPreviewSlice} from "../../store/event/preview";
 import SmallLoader from "../../components/common/loader/SmallLoader";
 import {useObserver} from "../../hooks/useObserver";
+import "../../styles.css"
 
 interface EventScreenProps {
     event: BondEvent,
@@ -60,29 +61,32 @@ const EventPage: React.FC<EventScreenProps> = ({
                     </div>
                 </div>
                 <div className="w-full flex justify-center mt-[20px]">
-                    <EventTabBar activeTab={activeTab} setActiveTab={setActiveTab}/>
+                    <EventTabBar activeTab={activeTab} setActiveTab={setActiveTab} allTabs={[EventTab.AllNfts, EventTab.CollectedNfts, EventTab.NotCollectedNfts]}/>
                 </div>
                 <div className="space-y-2">
                     <div className="pl-2 text-white font-archivo font-bold">Filter</div>
                     <TokenSearchInput tokenId={searchTokenId} setTokenId={setSearchTokenId}/>
                 </div>
-                <div className="mb-[30px]">
-                    <div className="flex flex-col gap-0 bg-dark-gray rounded-2xl
+                <div className="mb-[30px] border-gradient">
+                    <div className="flex flex-col gap-0 bg-gray-900 rounded-2xl
                                     px-[12px] md:px-[24px] overflow-hidden mb-10"
                     >
                         {tokens.map((token, index) =>
                             <>
                                 <EventNftLine key={token.meta.pubkey.toString()}
+                                              mintAddress={token.meta.data.mint}
                                               name={token.meta.data.data.name}
                                               isCollected={true}
                                               image={token.image}
                                 />
-                                {index !== tokens.length - 1 && <hr/>}
+                                {index !== tokens.length - 1 && <hr className="hr-color"/>}
                             </>
                         )}
                     </div>
                     {fetching
-                        ? <SmallLoader/>
+                        ? <div className="pb-9">
+                            <SmallLoader/>
+                            </div>
                         : <div ref={lastElement}/>
                     }
                 </div>

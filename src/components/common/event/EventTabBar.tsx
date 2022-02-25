@@ -4,16 +4,17 @@ export enum EventTab {
     AllNfts = "All",
     CollectedNfts = "Collected",
     NotCollectedNfts = "Not collected",
+    Active = "Active Events",
+    Collected = "Completed Events"
 }
 
 interface EventTabBarProps {
     activeTab: EventTab,
-    setActiveTab: (tab: EventTab) => any
+    setActiveTab: (tab: EventTab) => any,
+    allTabs: Array<EventTab>,
 }
 
-const EventTabBar = React.memo<EventTabBarProps>(({activeTab, setActiveTab}) => {
-
-    const allTabs = [EventTab.AllNfts, EventTab.CollectedNfts, EventTab.NotCollectedNfts]
+const EventTabBar = React.memo<EventTabBarProps>(({activeTab, setActiveTab, allTabs}) => {
 
     return (
         <div className="inline-flex p-1 bg-gray-900 rounded-lg font-archivo overflow-hidden text-[14px]">
@@ -22,7 +23,7 @@ const EventTabBar = React.memo<EventTabBarProps>(({activeTab, setActiveTab}) => 
                     {tab === activeTab
                         ?
                         <button
-                            className="text-gray-900 opacity-100 px-6 py-[6px] font-semibold rounded-md bg-gray-300 bg-opacity-85">
+                            className="text-gray-900 opacity-100 px-6 py-[6px] font-semibold rounded-md bg-gradient-to-r from-sol-green to-sol-sea">
                             {tab}
                         </button>
                         :

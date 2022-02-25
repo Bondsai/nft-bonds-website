@@ -25,9 +25,10 @@ module.exports = {
         extend: {
             colors: {
                 'sol-gray': 'rgb(35, 39, 45)',
-                'sol-gray-button-hover': 'rgb(55, 59, 65)',
-                'sol-gray-button-focus': 'rgb(75, 79, 85)',
-                'sol-gray-button-active': 'rgb(85, 89, 95)',
+                'sol-gray-input-hover': 'rgb(55, 59, 65)',
+                'sol-gray-button-hover': 'rgba(85, 89, 95, 0.5)',
+                'sol-gray-button-focus': 'rgba(105, 109, 105, 0.5)',
+                'sol-gray-button-active': 'rgba(125, 129, 125, 0.5)',
                 'sol-green': 'rgb(122, 255, 170)',
                 'sol-purple': 'rgb(152, 91, 256)',
                 'sol-white': 'rgb(174, 185, 196)',
@@ -36,7 +37,8 @@ module.exports = {
                 'gray-inch': '#7e96b8',
                 'solana-blue': 'rgb(128, 236, 255)',
                 'dark-gray': '#131823',
-            }
+                'cover-land-page': 'rgb(146, 186, 233)',
+            },
         },
     },
     plugins: [require('tw-elements/dist/plugin')],
