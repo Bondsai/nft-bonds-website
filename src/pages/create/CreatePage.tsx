@@ -1,7 +1,8 @@
 import React, {useState} from "react";
+import Modal from "./Modal";
+import CreateEvent from "./CreateEvent";
 import AddForm from "./AddForm";
 import NftListVerbose from "./NftListVerbose";
-import Modal from "./Modal";
 
 export interface Row {
     id: number,
@@ -13,6 +14,12 @@ export interface Rows {
 }
 
 const CreatePage = () => {
+    const [eventName, setEventName] = useState('')
+    const [eventDuration, setEventDuration] = useState(0)
+    const [vestingPeriod, setVestingPeriod] = useState(0)
+
+    const [eventCreated, setEventCreated] = useState(false)
+
     const [nftAddress, setNftAddress] = useState('')
     const [rows, setRows] = useState<Row[]>([])
 
@@ -27,23 +34,19 @@ const CreatePage = () => {
     }
 
     return (
-        <div className="flex flex-col mx-auto w-3/4">
-            <AddForm setNftAddress={setNftAddress} submitNftAddress={addNewRow}/>
-            <NftListVerbose rows={rows} removeRow={removeRow}/>
-
-            {/*hidden, shown on button click using DOM, probably need to change to match React guidelines?*/}
-            <Modal rows={rows}/>
-
-                {/*// <div*/}
-                {/*//     style = {{backgroundColor: 'rgba(0, 0, 0, 0.8)'}}*/}
-                {/*//     className='fixed inset-0 z-50 flex items-center p-4 '>*/}
-                {/*//     <div className="flex mx-auto justify-center bg-blue-50">*/}
-                {/*//         <BlueGreenButton title={'asd'}>*/}
-                {/*//             Hello world*/}
-                {/*//         </BlueGreenButton>*/}
-                {/*//     </div>*/}
-                {/*// </div>*/}
-        </div>
+        <>
+            {eventCreated ?
+                <div className="flex flex-col mx-auto w-3/4">
+                    <AddForm setNftAddress={setNftAddress} submitNftAddress={addNewRow} nftAddress={nftAddress}/>
+                    <NftListVerbose rows={rows} removeRow={removeRow}/>
+                    <Modal rows={rows}/>
+                </div> :
+                <CreateEvent setEventName={setEventName}
+                             setVestingPeriod={setVestingPeriod}
+                             setEventDuration={setEventDuration}
+                             setEventCreated={setEventCreated}/>
+            }
+        </>
     );
 };
 
