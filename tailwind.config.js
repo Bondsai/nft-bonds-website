@@ -24,6 +24,12 @@ module.exports = {
         },
 
         extend: {
+            width: {
+                '150px': '150px',
+            },
+            height: {
+                'screen-skip-nav' : 'calc(100vh-64px)'
+            },
             spacing: {
                 'skip-nav': 'calc(100vh-64px)'
             },
