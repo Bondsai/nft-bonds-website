@@ -28,7 +28,7 @@ const App: React.FC = () => {
             <div>
                 <Background/>
                 <Navbar/>
-                <div className="pt-16 position:absolute">
+                <div className="pt-16">
                     <AppRouter/>
                 </div>
 
