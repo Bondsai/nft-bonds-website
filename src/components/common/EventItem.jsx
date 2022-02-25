@@ -55,7 +55,7 @@ const EventItem = ({item}) => {
             <div className="text-sol-white justify-center flex px-1 font-archivo">
                 <BiTimeFive className="mt-1 mr-1"/>
                 <div>
-                    Time to unlock: {time} day(s)
+                    Duration: {time} day(s)
                 </div>
             </div>
             <div className="text-sol-white justify-center flex px-1 font-archivo">
