@@ -53,23 +53,23 @@ const EventPage: React.FC<EventScreenProps> = ({
 
     return (
         <div className="max-w-screen-2xl mx-auto">
-            <div className="flex flex-col pt-[50px] px-4 justify-center max-w-max mx-auto gap-8 md:gap-14">
+            <div className="flex flex-col pt-12 px-4 justify-center max-w-max mx-auto gap-8 md:gap-14">
                 <div>
                     <EventTitle title={event.name}/>
                     <div className="flex flex-col md:flex-row w-full mt-5 md:mt-10 gap-5">
                         <InfoBlock endTimestamp={1} discount={20}/>
                     </div>
                 </div>
-                <div className="w-full flex justify-center mt-[20px]">
+                <div className="w-full flex justify-center mt-5">
                     <EventTabBar activeTab={activeTab} setActiveTab={setActiveTab} allTabs={[EventTab.AllNfts, EventTab.CollectedNfts, EventTab.NotCollectedNfts]}/>
                 </div>
                 <div className="space-y-2">
                     <div className="pl-2 text-white font-archivo font-bold">Filter</div>
                     <TokenSearchInput tokenId={searchTokenId} setTokenId={setSearchTokenId}/>
                 </div>
-                <div className="mb-[30px] border-gradient">
-                    <div className="flex flex-col gap-0 bg-gray-900 rounded-2xl
-                                    px-[12px] md:px-[24px] overflow-hidden mb-10"
+                <div className="mb-7">
+                    <div className="flex flex-col bg-gray-900 rounded-2xl
+                                    px-3 md:px-6 overflow-hidden mb-10"
                     >
                         {tokens.map((token, index) =>
                             <>
