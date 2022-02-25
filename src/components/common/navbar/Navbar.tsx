@@ -12,7 +12,7 @@ import SignedInProfilePage from "../../../pages/profile/SignedInProfilePage";
 
 
 const Navbar = () => {
-    const [activeLink, setActiveLink] = useState(window.location.pathname)
+    const [activeLink, setActiveLink] = useState(window.location.pathname === '/' ? "/explore" : window.location.pathname)
 
     const links: LinkProps[] = [
         {name: "Explore", link: "/explore", icon: <CgNotes/>},
