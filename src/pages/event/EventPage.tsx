@@ -9,7 +9,9 @@ import EventNftLine from "../../components/common/nft/EventNftLine";
 import {useAppDispatch, useAppSelector} from "../../hooks/redux";
 import {fetchEventTokens} from "../../store/event/thunk";
 import {eventPreviewSlice} from "../../store/event/preview";
-import {Network} from "../../API/solana/core";
+import SmallLoader from "../../components/common/loader/SmallLoader";
+import {useObserver} from "../../hooks/useObserver";
+import "../../styles.css"
 
 interface EventScreenProps {
     event: BondEvent,
@@ -24,22 +26,26 @@ const EventPage: React.FC<EventScreenProps> = ({
 
     const dispatch = useAppDispatch()
 
-    // useObserver(lastElement, true, fetching, () => {
-    //     dispatch(fetchEventTokens(tokenIDs))
-    // })
+    useObserver(lastElement, true, fetching, () => {
+        dispatch(fetchEventTokens(tokenIDs))
+    })
 
     const tokenIDs = [
-       "37XjTm7xpiBMSLAuQEuMzYYTJSowoGNgjSgKPQhUffzt"
+        "7mRLptNjdyiZxH8d3UHrRLKr5iynDrkJKma5pGeC2v7d",
+        "4ZpmXp6DX4cLmA8VXqMqtBUuxDN54nGGLj1mPYZW5fsX",
+        "AHQvc5Bx6WVKsPBL87trDiqnK7hZmoiUFJf86Z7PHpfJ",
+        "4ZSBBq45UJAEsTdURF1TCT46kFaHEuHMVokKRcwWeA3p",
+        "3LV9XMAjmudCLXmi8Kz3m4aCYzcdHhbXhcv4Jh4McuDN",
+        "8GXjyDHa5Y2JvAb5TBuikFaRi5ytk8sx378zwTszYfhn",
+        "BLpMuVYaiPC5tYjPee7WvbHyCkbQmPyviBA9s5c8bLRC",
     ]
 
     useEffect(() => {
-        dispatch(fetchEventTokens(tokenIDs, Network.Devnet))
+        dispatch(fetchEventTokens(tokenIDs))
         return () => {
             dispatch(eventPreviewSlice.actions.reset())
         }
     }, [])
-
-    console.log(tokens)
 
 
     const [searchTokenId, setSearchTokenId] = useState('')
@@ -47,23 +53,23 @@ const EventPage: React.FC<EventScreenProps> = ({
 
     return (
         <div className="max-w-screen-2xl mx-auto">
-            <div className="flex flex-col pt-12 px-4 justify-center max-w-max mx-auto gap-8 md:gap-14">
+            <div className="flex flex-col pt-[50px] px-4 justify-center max-w-max mx-auto gap-8 md:gap-14">
                 <div>
                     <EventTitle title={event.name}/>
                     <div className="flex flex-col md:flex-row w-full mt-5 md:mt-10 gap-5">
                         <InfoBlock endTimestamp={1} discount={20}/>
                     </div>
                 </div>
-                <div className="w-full flex justify-center mt-5">
-                    <EventTabBar activeTab={activeTab} setActiveTab={setActiveTab}/>
+                <div className="w-full flex justify-center mt-[20px]">
+                    <EventTabBar activeTab={activeTab} setActiveTab={setActiveTab} allTabs={[EventTab.AllNfts, EventTab.CollectedNfts, EventTab.NotCollectedNfts]}/>
                 </div>
                 <div className="space-y-2">
                     <div className="pl-2 text-white font-archivo font-bold">Filter</div>
                     <TokenSearchInput tokenId={searchTokenId} setTokenId={setSearchTokenId}/>
                 </div>
-                <div className="">
+                <div className="mb-[30px] border-gradient">
                     <div className="flex flex-col gap-0 bg-gray-900 rounded-2xl
-                                    px-3 md:px-6 overflow-hidden mb-10"
+                                    px-[12px] md:px-[24px] overflow-hidden mb-10"
                     >
                         {tokens.map((token, index) =>
                             <>
@@ -73,14 +79,16 @@ const EventPage: React.FC<EventScreenProps> = ({
                                               isCollected={true}
                                               image={token.image}
                                 />
-                                {index !== tokens.length - 1 && <hr/>}
+                                {index !== tokens.length - 1 && <hr className="hr-color"/>}
                             </>
                         )}
                     </div>
-                    {/*{fetching*/}
-                    {/*    ? <SmallLoader/>*/}
-                    {/*    : <div ref={lastElement}/>*/}
-                    {/*}*/}
+                    {fetching
+                        ? <div className="pb-9">
+                            <SmallLoader/>
+                            </div>
+                        : <div ref={lastElement}/>
+                    }
                 </div>
             </div>
         </div>

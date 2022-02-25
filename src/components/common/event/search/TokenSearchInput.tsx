@@ -1,4 +1,5 @@
 import React from 'react';
+import "../../../../styles.css"
 
 interface TokenSearchProps {
     tokenId: string,
@@ -7,16 +8,17 @@ interface TokenSearchProps {
 
 const TokenSearchInput: React.FC<TokenSearchProps> = ({tokenId, setTokenId}) => {
     return (
-        <input className="w-full rounded-3xl px-5 py-5
-                          bg-gray-900 text-white text-sm font-archivo
+        <div className="border-gradient">
+            <input className="w-full rounded-[18px] px-5 py-[20px]
+                          bg-gray-900 text-white text-[13px] font-archivo
                           focus:ring-1
                           focus:ring-gray-400
-                          outline-none
-        "
-               value={tokenId}
-               onChange={e => setTokenId(e.target.value)}
-               placeholder="Enter Token ID..."
-        />
+                          outline-none"
+                   value={tokenId}
+                   onChange={e => setTokenId(e.target.value)}
+                   placeholder="Enter Token ID..."
+            />
+        </div>
     );
 };
 

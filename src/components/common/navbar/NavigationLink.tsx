@@ -1,29 +1,50 @@
 import React from 'react';
 import {Link} from "react-router-dom";
-import GreenBluePinkBorder from "../borders/GreenBluePinkBorder";
 
 export interface LinkProps {
     name: string,
     link: string,
-    icon?: React.ReactNode
+    isActive?: boolean,
+    icon?: React.ReactNode,
+    onClick?: (r: any) => any
 }
 
 const NavigationLink = React.memo<LinkProps>(({
     name,
     link,
-    icon
+    isActive,
+    icon,
+    onClick
 }) => {
     return (
-        <Link to={link}
-              className="text-sol-white font-archivo text-sm font-semibold hover:text-blue-400
+        <div>
+            {isActive ?
+                <Link
+                    onClick={onClick}
+                    to={link}
+                    className="text-sol-green font-archivo text-sm font-semibold inline-flex gap-2 items-center"
+                    style={{
+                        letterSpacing: 1
+                    }}
+                >
+                    {icon}
+                    {name}
+                </Link>
+                :
+                <Link
+                    onClick={onClick}
+                    to={link}
+                    className="text-sol-white font-archivo text-sm font-semibold hover:text-sol-sea
                          inline-flex gap-2 items-center"
-              style={{
-                  letterSpacing: 1
-              }}
-        >
-            {icon}
-            {name}
-        </Link>
+                    style={{
+                        letterSpacing: 1
+                    }}
+                >
+                    {icon}
+                    {name}
+                </Link>
+        }
+        </div>
     );
 });
 
