@@ -26,12 +26,17 @@ module.exports = {
         extend: {
             width: {
                 '150px': '150px',
+                '158px' : '158px',
+                '193px' : '193px'
             },
             height: {
-                'screen-skip-nav' : 'calc(100vh-64px)'
+                'screen-skip-nav' : 'calc(100vh-64px)',
+                '156px' : '156px',
+                '193px' : '193px',
             },
             spacing: {
-                'skip-nav': 'calc(100vh-64px)'
+                'skip-nav': 'calc(100vh-64px)',
+                '158px' : '158px'
             },
             colors: {
                 'sol-gray': 'rgb(35, 39, 45)',

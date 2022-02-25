@@ -15,7 +15,7 @@ const Slider = ({props, itemsUrls}) => {
         <Swiper
             props={props}
             autoplay={{delay: 3000, disableOnInteraction: false}}
-            className="object-cover rounded-lg h-[156px] w-[193px]"
+            className="object-cover rounded-lg h-156px w-193px"
             slidesPerView={1}
             centeredSlides
         >
