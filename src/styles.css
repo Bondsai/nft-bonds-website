@@ -52,3 +52,9 @@
 .text-color-navbar {
     text-overline-color: linear-gradient(to left, rgb(85, 205, 234), rgb(122, 255, 170));;
 }
+
+.hr-color {
+    border: 0;
+    height: 1px;
+    background: linear-gradient(to left, rgb(85, 205, 234), rgb(122, 255, 170))
+ }
