@@ -33,7 +33,7 @@ const EventItem = ({item}) => {
             <div className="border-gradient-pic h-40 mx-5 mt-5 mb-2">
                 {item.isFinished &&
                     <div
-                        className="z-10 bg-blend-overlay text-2xl justify-center flex absolute w-40 h-10 bg-gradient-to-br from-sol-green to-blue-500 text-white rounded-md ml-[32px]">
+                        className="z-10 bg-blend-overlay text-2xl justify-center flex absolute w-40 h-10 bg-gradient-to-r from-sol-green to-sol-sea text-white rounded-tr-md rounded-bl-md ml-[37px]">
                         Collected
                     </div>
                 }
