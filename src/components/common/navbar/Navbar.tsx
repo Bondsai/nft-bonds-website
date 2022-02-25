@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import LogoLink from "./LogoLink";
 import ConnectWalletButton from "../auth/ConnectWalletButton";
 import NavigationLink, {LinkProps} from "./NavigationLink";
@@ -12,6 +12,7 @@ import SignedInProfilePage from "../../../pages/profile/SignedInProfilePage";
 
 
 const Navbar = () => {
+    const [activeLink, setActiveLink] = useState(window.location.pathname)
 
     const links: LinkProps[] = [
         {name: "Explore", link: "/explore", icon: <CgNotes/>},
@@ -35,6 +36,8 @@ const Navbar = () => {
                                         name={link.name}
                                         link={link.link}
                                         icon={link.icon}
+                                        isActive={link.link === activeLink}
+                                        onClick={_ => setActiveLink(link.link)}
                         />
                     )}
                 </div>

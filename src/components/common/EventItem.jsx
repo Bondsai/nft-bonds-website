@@ -6,6 +6,7 @@ import Slider from "./slider/Slider";
 import BlueGreenButton from "./buttons/BlueGreenButton";
 import {getNFT} from "../../API/solana/requests";
 import SmallLoader from "./loader/SmallLoader";
+import "../../styles.css"
 
 const EventItem = ({item}) => {
     const [images, setImages] = useState([])
@@ -28,13 +29,12 @@ const EventItem = ({item}) => {
     const collected = '?'
 
     return (
-        <div className="border-solid border-2 border-sol-white rounded-lg w-60 h-100 m-5 transition-shadow bg-gray-900">
-            <div className="border-solid border-2 border-sol-white rounded-lg h-40 mx-5 mt-5 mb-2">
+        <div className="border-gradient w-60 h-100 m-5 transition-shadow bg-gray-900">
+            <div className="border-gradient-pic h-40 mx-5 mt-5 mb-2">
                 {item.isFinished &&
-                    <div
-                        className="z-10 bg-blend-overlay text-2xl justify-center flex absolute w-40 h-10 bg-gradient-to-br from-sol-green to-blue-500 text-white rounded-md ml-[32px]">
-                        Collected
-                    </div>
+                    <ImCheckmark
+                        className="z-10 p-2 bg-blend-overlay text-2xl justify-center flex absolute w-10 h-10 bg-sol-sea text-white rounded-tr-md rounded-bl-md ml-[158px]">
+                    </ImCheckmark>
                 }
                 {images.length === 0 &&
                     <div className="object-center w-full h-40">
@@ -43,7 +43,7 @@ const EventItem = ({item}) => {
                 }
                 <Slider className="z-0" itemsUrls={images}/>
             </div>
-            <div className="text-sol-white text-xl font-bold truncate hover:text-clip px-5 text-center font-archivo">
+            <div className="text-white text-xl font-bold truncate hover:text-clip px-5 text-center font-archivo">
                 {item.owner}
             </div>
             <div className="text-sol-white justify-center flex px-1 font-archivo">
