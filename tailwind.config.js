@@ -4,6 +4,7 @@ module.exports = {
         fontFamily: {
             'archivo': ['Archivo'],
         },
+
         screens: {
             'xxs': '310px',
             'xs': '500px',
@@ -23,6 +24,9 @@ module.exports = {
         },
 
         extend: {
+            spacing: {
+                'skip-nav': 'calc(100vh-64px)'
+            },
             colors: {
                 'sol-gray': 'rgb(35, 39, 45)',
                 'sol-gray-input-hover': 'rgb(55, 59, 65)',

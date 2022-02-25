@@ -15,8 +15,8 @@ const EventInfoCell = React.memo<EventInfoCellProps>(({
 }) => {
     return (
         <>
-            <div className="text-white opacity-90 font-archivo font-semibold md:px-[24px] max-md:py-[16px]
-                            flex flex-col gap-[12px]"
+            <div className="text-white opacity-90 font-archivo font-semibold md:px-6 max-md:py-4
+                            flex flex-col gap-3"
             >
                 <div className="inline-flex gap-2 items-center opacity-70">
                     {name}

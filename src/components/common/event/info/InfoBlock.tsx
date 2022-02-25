@@ -13,8 +13,8 @@ const InfoBlock = React.memo<EventInfoBlockProps>(({
 }) => {
     return (
         <div className="rounded-2xl bg-gray-900
-                        flex flex-col px-[16px] py-[24px] w-[350px]
-                        lg:flex-row lg:px-[24px] lg:py-[16px] lg:w-full"
+                        flex flex-col px-4 py-6 w-80
+                        lg:flex-row lg:px-6 lg:py-4 lg:w-full"
         >
             <EventInfoCell name="Distributed tokens" description="Amount of tokens to distribute">
                 100 SOL
