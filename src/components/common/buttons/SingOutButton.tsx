@@ -1,6 +1,6 @@
 import React from 'react';
 import BaseButton from "./BaseButton";
-import {disconnect} from "../../../solana/auth";
+import {disconnect} from "../../../solana/wallet/auth";
 
 const SingOutButton = () => {
     return (

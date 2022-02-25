@@ -1,6 +1,6 @@
 import React from 'react';
 import {BiWallet} from 'react-icons/bi'
-import {solanaProvider} from "../../../solana/core";
+import {getSolanaProvider} from "../../../solana/wallet/provider";
 
 interface ConnectWalletProps {
     setAccount: (account: string) => any
@@ -9,7 +9,7 @@ interface ConnectWalletProps {
 const ConnectWalletButton: React.FC<ConnectWalletProps> = ({setAccount}) => {
 
     const connect = () => {
-        const provider = solanaProvider()
+        const provider = getSolanaProvider()
         if (!provider) {
             window.open("https://phantom.app/", "_blank")
             return
@@ -20,7 +20,7 @@ const ConnectWalletButton: React.FC<ConnectWalletProps> = ({setAccount}) => {
     }
 
     return (
-        <button className="font-archivo font-semibold px-[16px] py-[8px] text-white opacity-90
+        <button className="font-archivo font-semibold px-4 py-2 text-white opacity-90
                            bg-gradient-to-br from-cyan-300 to-blue-500 rounded-2xl
                            hover:from-blue-500 hover:to-purple-300"
                 onClick={connect}

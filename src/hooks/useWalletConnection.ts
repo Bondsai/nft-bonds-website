@@ -1,5 +1,5 @@
 import {useEffect} from "react";
-import {solanaProvider} from "../solana/core";
+import {getSolanaProvider} from "../solana/wallet/provider";
 
 export const useWalletConnection = (
     onSuccess: (publicKey: string) => any,
@@ -7,7 +7,7 @@ export const useWalletConnection = (
 ) => {
     useEffect(() => {
         const onLoad = async () => {
-            const provider = solanaProvider()
+            const provider = getSolanaProvider()
             provider?.connect({
                 onlyIfTrusted: true
             }).then((response: any) => {

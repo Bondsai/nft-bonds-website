@@ -14,7 +14,7 @@ interface Phantom {
     on: (event: Event, callback: () => void) => void;
 }
 
-export const solanaProvider = (): Phantom | undefined => {
+export const getSolanaProvider = (): Phantom | undefined => {
     const windowRef = window as any
     if ("solana" in window) {
         const solanaProvider: any = windowRef.solana

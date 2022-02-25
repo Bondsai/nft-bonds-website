@@ -1,5 +1,5 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
-import {ImageTokenMetadata} from "../../API/solana/requests";
+import {ImageTokenMetadata} from "../../solana/requests";
 
 export interface EventPreviewState {
     tokens: ImageTokenMetadata[],

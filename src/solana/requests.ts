@@ -1,6 +1,6 @@
 import {clusterApiUrl, Connection, PublicKey} from "@solana/web3.js";
 import {Metadata} from "@metaplex-foundation/mpl-token-metadata";
-import {Network} from "./core";
+import {Network} from "./core/program";
 
 export interface ImageTokenMetadata {
     image?: string,

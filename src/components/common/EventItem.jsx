@@ -4,7 +4,7 @@ import {ImCheckmark} from "react-icons/im";
 import {IoMdPricetags} from "react-icons/io";
 import Slider from "./slider/Slider";
 import BlueGreenButton from "./buttons/BlueGreenButton";
-import {getNFT} from "../../API/solana/requests";
+import {getNFT} from "../../solana/requests";
 import "../../styles.css"
 import NewSmallLoader from "./loader/NewSmallLoader";
 

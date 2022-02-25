@@ -5,14 +5,16 @@ import NotFoundPage from "./pages/NotFoundPage";
 import EventFetcher from "./pages/event/EventFetcher";
 import ExploreBonds from "./pages/ExploreBonds";
 import CreatePage from "./pages/create/CreatePage";
-import {getEvent} from "./API/solana/rpc/getEvent";
+import {getEvent} from "./solana/rpc/getEvent";
+import {getEventOwners} from "./solana/rpc/getEventOwners";
+import {initBaseAccount} from "./solana/init/init";
 
 const AppRouter = () => {
 
     useEffect(() => {
-        getEvent("EtffHsAe7i8ZpsmB7SSGHNJicue1P3Z5xuZ6QUVgzvyN")
+        getEventOwners()
             .then(console.log)
-            .catch(() => console.log("error"))
+            .catch(e => console.log(e.message))
     })
 
     return (

@@ -1,4 +1,4 @@
-import { Idl } from "@project-serum/anchor";
+import {Idl} from "@project-serum/anchor";
 
 export const idl: Idl = {
   "version": "0.0.0",
@@ -175,8 +175,34 @@ export const idl: Idl = {
       "name": "submitEvent",
       "accounts": [
         {
+          "name": "baseAccount",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
           "name": "eventAccount",
           "isMut": true,
+          "isSigner": false
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "initialize",
+      "accounts": [
+        {
+          "name": "baseAccount",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "authority",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "systemProgram",
+          "isMut": false,
           "isSigner": false
         }
       ],
@@ -184,6 +210,20 @@ export const idl: Idl = {
     }
   ],
   "accounts": [
+    {
+      "name": "BaseAccount",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "hashes",
+            "type": {
+              "vec": "publicKey"
+            }
+          }
+        ]
+      }
+    },
     {
       "name": "EventAccount",
       "type": {
@@ -269,7 +309,4 @@ export const idl: Idl = {
       }
     }
   ],
-  // "metadata": {
-  //   "address": "8wT8G8ChUVp9J7nMzx714XwetHZRHTpU3i782BVPEdWg"
-  // }
 }
