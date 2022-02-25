@@ -9,9 +9,9 @@ import EventNftLine from "../../components/common/nft/EventNftLine";
 import {useAppDispatch, useAppSelector} from "../../hooks/redux";
 import {fetchEventTokens} from "../../store/event/thunk";
 import {eventPreviewSlice} from "../../store/event/preview";
-import SmallLoader from "../../components/common/loader/SmallLoader";
 import {useObserver} from "../../hooks/useObserver";
 import "../../styles.css"
+import NewSmallLoader from "../../components/common/loader/NewSmallLoader";
 
 interface EventScreenProps {
     event: BondEvent,
@@ -85,7 +85,7 @@ const EventPage: React.FC<EventScreenProps> = ({
                     </div>
                     {fetching
                         ? <div className="pb-9">
-                            <SmallLoader/>
+                            <NewSmallLoader/>
                             </div>
                         : <div ref={lastElement}/>
                     }
