@@ -6,6 +6,7 @@ import Slider from "./slider/Slider";
 import BlueGreenButton from "./buttons/BlueGreenButton";
 import {getNFT} from "../../API/solana/requests";
 import SmallLoader from "./loader/SmallLoader";
+import "../../styles.css"
 
 const EventItem = ({item}) => {
     const [images, setImages] = useState([])
