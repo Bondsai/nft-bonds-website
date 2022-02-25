@@ -2,19 +2,17 @@ import React, {useEffect, useRef, useState} from 'react';
 
 import InfoBlock from "../../components/common/event/info/InfoBlock";
 import EventTitle from "../../components/common/event/EventTitle";
-import {BondEvent} from "../../models/BondEvent";
 import TokenSearchInput from "../../components/common/event/search/TokenSearchInput";
 import EventTabBar, {EventTab} from "../../components/common/event/EventTabBar";
 import EventNftLine from "../../components/common/nft/EventNftLine";
 import {useAppDispatch, useAppSelector} from "../../hooks/redux";
-import {fetchEventTokens} from "../../store/event/thunk";
-import {eventPreviewSlice} from "../../store/event/preview";
 import SmallLoader from "../../components/common/loader/SmallLoader";
 import {useObserver} from "../../hooks/useObserver";
 import "../../styles.css"
+import {EventResponse} from "../../solana/rpc/getEvent";
 
 interface EventScreenProps {
-    event: BondEvent,
+    event: EventResponse,
 }
 
 const EventPage: React.FC<EventScreenProps> = ({
@@ -26,27 +24,18 @@ const EventPage: React.FC<EventScreenProps> = ({
 
     const dispatch = useAppDispatch()
 
-    useObserver(lastElement, true, fetching, () => {
-        dispatch(fetchEventTokens(tokenIDs))
-    })
+    // useObserver(lastElement, true, fetching, () => {
+    //     dispatch(fetchEventTokens(tokenIDs))
+    // })
 
-    const tokenIDs = [
-        "7mRLptNjdyiZxH8d3UHrRLKr5iynDrkJKma5pGeC2v7d",
-        "4ZpmXp6DX4cLmA8VXqMqtBUuxDN54nGGLj1mPYZW5fsX",
-        "AHQvc5Bx6WVKsPBL87trDiqnK7hZmoiUFJf86Z7PHpfJ",
-        "4ZSBBq45UJAEsTdURF1TCT46kFaHEuHMVokKRcwWeA3p",
-        "3LV9XMAjmudCLXmi8Kz3m4aCYzcdHhbXhcv4Jh4McuDN",
-        "8GXjyDHa5Y2JvAb5TBuikFaRi5ytk8sx378zwTszYfhn",
-        "BLpMuVYaiPC5tYjPee7WvbHyCkbQmPyviBA9s5c8bLRC",
-    ]
 
-    useEffect(() => {
-        dispatch(fetchEventTokens(tokenIDs))
-        return () => {
-            dispatch(eventPreviewSlice.actions.reset())
-        }
-    }, [])
-
+    // useEffect(() => {
+    //     dispatch(fetchEventTokens(tokenIDs))
+    //     return () => {
+    //         dispatch(eventPreviewSlice.actions.reset())
+    //     }
+    // }, [])
+    //
 
     const [searchTokenId, setSearchTokenId] = useState('')
     const [activeTab, setActiveTab] = useState(EventTab.AllNfts)
@@ -55,9 +44,17 @@ const EventPage: React.FC<EventScreenProps> = ({
         <div className="max-w-screen-2xl mx-auto">
             <div className="flex flex-col pt-12 px-4 justify-center max-w-max mx-auto gap-8 md:gap-14">
                 <div>
-                    <EventTitle title={event.name}/>
+                    <EventTitle title={event.title}/>
                     <div className="flex flex-col md:flex-row w-full mt-5 md:mt-10 gap-5">
-                        <InfoBlock endTimestamp={1} discount={20}/>
+                        <InfoBlock discount={event.percent}
+                                   vesting={event.vestingTime}
+                                   collectedTokensAmount={event.collectedTokensAmount.toString()}
+                                   fullTokensAmount={event.fullTokensAmount.toString()}
+                                   totalNfts={event.totalNfts.toString()}
+                        />
+                    </div>
+                    <div>
+
                     </div>
                 </div>
                 <div className="w-full flex justify-center mt-5">

@@ -8,19 +8,13 @@ import CreatePage from "./pages/create/CreatePage";
 import {getEvent} from "./solana/rpc/getEvent";
 import {getEventOwners} from "./solana/rpc/getEventOwners";
 import {initBaseAccount} from "./solana/init/init";
+import {getEvents} from "./solana/rpc/getEvents";
 
 const AppRouter = () => {
-
-    useEffect(() => {
-        getEventOwners()
-            .then(console.log)
-            .catch(e => console.log(e.message))
-    })
-
     return (
         <Routes>
             <Route path="/" element={<Navigate to="/explore"/>}/>
-            <Route path="event" element={<EventFetcher/>}/>
+            <Route path="event/:userAccount" element={<EventFetcher/>}/>
             <Route path="create" element={<CreatePage/>}/>
             <Route path="explore" element={<ExploreBonds/>}/>
             <Route path="*" element={<NotFoundPage/>}/>
