@@ -28,8 +28,8 @@ const EventItem = ({item}) => {
     const collected = '?'
 
     return (
-        <div className="border-solid border-2 border-sol-white rounded-lg w-60 h-100 m-5 transition-shadow">
-            <div className="border-solid border-2 border-sol-white rounded-lg h-40 m-5">
+        <div className="border-solid border-2 border-sol-white rounded-lg w-60 h-100 m-5 transition-shadow bg-gray-900">
+            <div className="border-solid border-2 border-sol-white rounded-lg h-40 mx-5 mt-5 mb-2">
                 {item.isFinished &&
                     <div
                         className="z-10 bg-blend-overlay text-2xl justify-center flex absolute w-40 h-10 bg-gradient-to-br from-sol-green to-blue-500 text-white rounded-md ml-[32px]">

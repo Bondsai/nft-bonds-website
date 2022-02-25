@@ -60,7 +60,7 @@ const EventPage: React.FC<EventScreenProps> = ({
                     </div>
                 </div>
                 <div className="w-full flex justify-center mt-[20px]">
-                    <EventTabBar activeTab={activeTab} setActiveTab={setActiveTab}/>
+                    <EventTabBar activeTab={activeTab} setActiveTab={setActiveTab} allTabs={[EventTab.AllNfts, EventTab.CollectedNfts, EventTab.NotCollectedNfts]}/>
                 </div>
                 <div className="space-y-2">
                     <div className="pl-2 text-white font-archivo font-bold">Filter</div>

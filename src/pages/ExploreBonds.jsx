@@ -6,12 +6,13 @@ import ExploreBondButton from "../components/common/buttons/ExploreBondButton";
 import {useFetching} from "../hooks/useFetching";
 import ExploreLoader from "../components/common/loader/ExploreLoader";
 import {getEvents, EVENTS} from "../API/MockEventsServer";
+import EventTabBar, {EventTab} from "../components/common/event/EventTabBar";
 
 const ExploreBonds = () => {
 
     const [items, setItems] = useState([])
     const [request, setRequest] = useState('')
-    const [activePage, setActivePage] = useState(true)
+    const [activePage, setActivePage] = useState(EventTab.Active)
     const lastElement = useRef()
     const canLoad = items.length < EVENTS.length
 
@@ -31,14 +32,18 @@ const ExploreBonds = () => {
     const filteredItems = items.filter(item => item.owner.toLowerCase().includes(request.toLowerCase()))
     const activeItems = filteredItems .filter(item => !item.isFinished)
     const collectedItems = filteredItems .filter(item => item.isFinished)
-    const shownItems = activePage ? activeItems : collectedItems
+    const shownItems = activePage === EventTab.Active ? activeItems : collectedItems
 
     return (
         <div>
             <hr className="bg-sol-white"/>
-            <div className="grid grid-rows-1 md:grid-cols-3 justify-center">
-                <ExploreBondButton title="Active Events" onClick={_ => setActivePage(true)}/>
-                <ExploreBondButton title="Completed Events" onClick={_ => setActivePage(false)}/>
+            <div className="grid grid-rows-2 justify-center">
+                <div className="w-full flex justify-center mt-[20px] h-1/2">
+                    <EventTabBar activeTab={activePage} setActiveTab={setActivePage}
+                                 allTabs={[EventTab.Active, EventTab.Collected]}/>
+                </div>
+                {/*<ExploreBondButton title="Active Events" onClick={_ => setActivePage(true)}/>*/}
+                {/*<ExploreBondButton title="Completed Events" onClick={_ => setActivePage(false)}/>*/}
                 <SearchInput
                     value={request}
                     onChange={e => setRequest(e.target.value)}
