@@ -38,7 +38,7 @@ module.exports = {
                 'solana-blue': 'rgb(128, 236, 255)',
                 'dark-gray': '#131823',
                 'cover-land-page': 'rgb(146, 186, 233)',
-            }
+            },
         },
     },
     plugins: [require('tw-elements/dist/plugin')],

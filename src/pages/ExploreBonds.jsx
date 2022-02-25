@@ -36,9 +36,9 @@ const ExploreBonds = () => {
 
     return (
         <div>
-            <hr className="bg-sol-white"/>
-            <div className="grid grid-rows-2 justify-center">
-                <div className="w-full flex justify-center mt-[20px] h-1/2">
+            {/*<hr className="bg-sol-white"/>*/}
+            <div className="flex justify-between mt-6">
+                <div className="flex justify-center h-full m-2 mt-6 md:ml-14">
                     <EventTabBar activeTab={activePage} setActiveTab={setActivePage}
                                  allTabs={[EventTab.Active, EventTab.Collected]}/>
                 </div>
@@ -51,7 +51,7 @@ const ExploreBonds = () => {
                     placeholder="Search company..."
                 />
             </div>
-            <hr className="bg-sol-white"/>
+            {/*<hr className="bg-sol-white"/>*/}
             <div
                 className="grid grid-cols-1 xs:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 justify-center">
                 {shownItems.map(item => <EventItem item={item} key={item.id}/>)}
