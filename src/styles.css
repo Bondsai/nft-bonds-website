@@ -31,3 +31,24 @@
     border-radius: 10px;
     z-index: 0;
 }
+
+.border-gradient-search {
+    position: relative;
+    border-radius: 20px;
+}
+
+.border-gradient-search::before {
+    content: "";
+    position: absolute;
+    top: 2px;
+    bottom: 2px;
+    left: 2px;
+    right: 2px;
+    background: linear-gradient(to left, rgb(85, 205, 234), rgb(122, 255, 170));
+    border-radius: 20px;
+    z-index: -1;
+}
+
+.text-color-navbar {
+    text-overline-color: linear-gradient(to left, rgb(85, 205, 234), rgb(122, 255, 170));;
+}

@@ -23,7 +23,7 @@ const EventTabBar = React.memo<EventTabBarProps>(({activeTab, setActiveTab, allT
                     {tab === activeTab
                         ?
                         <button
-                            className="text-gray-900 opacity-100 px-6 py-[6px] font-semibold rounded-md bg-gray-300 bg-opacity-85">
+                            className="text-gray-900 opacity-100 px-6 py-[6px] font-semibold rounded-md bg-gradient-to-r from-sol-green to-sol-sea">
                             {tab}
                         </button>
                         :
