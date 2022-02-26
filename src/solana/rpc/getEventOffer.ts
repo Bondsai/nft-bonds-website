@@ -23,7 +23,7 @@ export const getEventOffer = async (
     index: number
 ): Promise<EventOfferResponse> => {
     const {programAddress} = await findOfferAddress(eventAddress, index)
-    return await program.account.offerAccount.fetch(programAddress) as any
+    return await program.account.offer.fetch(programAddress) as any
 }
 
 export const getEventOfferWithNFT = async (
