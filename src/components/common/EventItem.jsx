@@ -20,7 +20,7 @@ const EventItem = ({item}) => {
                 urls.push(resp.token.image)
             } catch (e) {
                 urls.push("")
-                console.log(e.message)
+                console.log(e)
             }
         }
         return urls
