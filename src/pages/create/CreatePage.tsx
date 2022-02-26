@@ -68,7 +68,8 @@ const CreatePage = () => {
                                 addNewRow={addNewRow}
                                 nftAddress={nftAddress}
                                 rows={rows}
-                                removeRow={removeRow}/>:
+                                removeRow={removeRow}
+                                account={account}/>:
                         <CreateEvent setEventName={setEventName}
                                      setVestingPeriod={setVestingPeriod}
                                      setEventDuration={setEventDuration}
