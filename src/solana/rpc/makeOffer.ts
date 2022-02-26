@@ -53,7 +53,7 @@ export const makeOffer = async ({
     )
 }
 
-export const createTokenInstance = (tokenAddress: PublicKey, walletAddress: PublicKey) => {
+export const createTokenInstance = (tokenAddress: PublicKey) => {
     return new Token(
         program.provider.connection,
         tokenAddress,
@@ -66,7 +66,7 @@ export const createOrFindAssociatedAccount = async (walletAddress: PublicKey, to
      return findAssociatedTokenAddress(walletAddress, tokenAddress)
         .then(response => response)
         .catch(async () => {
-            const token = createTokenInstance(tokenAddress, walletAddress)
+            const token = createTokenInstance(tokenAddress)
             return await token.createAssociatedTokenAccount(walletAddress)
         })
 }
