@@ -6,16 +6,21 @@ import Slider from "./slider/Slider";
 import "../../styles.css"
 import NewSmallLoader from "./loader/NewSmallLoader";
 import {Link} from "react-router-dom";
+import {getEventOfferWithNFT} from "../../solana/rpc/getEventOffer";
 
 const EventItem = ({item}) => {
     const [images, setImages] = useState([])
 
     const getImages = async () => {
         const urls = []
-        // for (const nft of item.nfts){
-        //     const resp = await getNFT(nft)
-        //     urls.push(resp.image)
-        // }
+        for (let i = 0; i < item.totalNfts; i++) {
+            try {
+                const resp = await getEventOfferWithNFT(item.authority, i)
+                urls.push(resp.token.image)
+            } catch (e) {
+                console.log(e.message)
+            }
+        }
         return urls
     }
 
