@@ -13,7 +13,7 @@ interface CreateEventInputFields {
     tokenAddress: string
 }
 
-const createEvent = async ({
+export const createEvent = async ({
     offerMaker,
     name,
     duration,
