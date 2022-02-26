@@ -1,5 +1,5 @@
 import {program} from "../core/program";
-import {BN, utils, web3} from "@project-serum/anchor";
+import {BN, web3} from "@project-serum/anchor";
 import {PublicKey} from "@solana/web3.js";
 import {findOfferAddress} from "../find";
 import {TOKEN_PROGRAM_ID} from "@solana/spl-token";
@@ -41,7 +41,7 @@ export const makeOffer = async ({
                 offer: programAddress,
                 authority: offerMakerAddress,
                 tokenAccountFromWhoMadeTheOffer: offerMakerPlatformTokensTokenAccount,
-                escrowedTokensOfOfferMaker: escrowedTokensOfOfferMaker,
+                escrowedTokensOfOfferMaker,
                 kindOfTokenOffered: tokenAddress,
                 kindOfTokenWantedInReturn: nftAddress,
                 tokenProgram: TOKEN_PROGRAM_ID,
@@ -51,3 +51,10 @@ export const makeOffer = async ({
         }
     )
 }
+
+
+// export const initEvent = (tokenAddress: PublicKey, offerMaker: PublicKey) => {
+//     return await tokenAddress.createAssociatedTokenAccount(
+//         offerMaker
+//     )
+// }

@@ -1,6 +1,7 @@
 import {BN, utils, web3} from "@project-serum/anchor";
 import {program} from "./core/program";
 import {PublicKey} from "@solana/web3.js";
+import {TOKEN_PROGRAM_ID} from "@solana/spl-token";
 
 interface FindProgramResponse {
     programAddress: PublicKey,
@@ -40,4 +41,25 @@ export const findOfferAddress = async (
     )
 
     return {programAddress, bumpAddress}
+}
+
+
+export enum SplAssociatedTokenProgramId {
+    Mainnet = "ATokenGPvbdGVxr1b2hvZbsiqW5xWH25efTNsLJA8knL",
+    Devnet = "ATokenGPvbdGVxr1b2hvZbsiqW5xWH25efTNsLJA8knL"
+}
+
+async function findAssociatedTokenAddress(
+    walletAddress: PublicKey,
+    tokenMintAddress: PublicKey
+): Promise<PublicKey> {
+    const response = await PublicKey.findProgramAddress(
+        [
+            walletAddress.toBuffer(),
+            TOKEN_PROGRAM_ID.toBuffer(),
+            tokenMintAddress.toBuffer(),
+        ],
+        new PublicKey(SplAssociatedTokenProgramId.Devnet)
+    )
+    return response[0]
 }
