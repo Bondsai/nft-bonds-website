@@ -1,12 +1,11 @@
 import {program} from "../core/program";
 import {findEventAddress} from "../find";
 import {PublicKey} from "@solana/web3.js";
-import {BN, Idl, IdlTypes} from "@project-serum/anchor";
-import {TypeDef} from "@project-serum/anchor/dist/cjs/program/namespace/types";
-import {IdlTypeDef} from "@project-serum/anchor/dist/cjs/idl";
+import {BN} from "@project-serum/anchor";
 
 export interface EventResponse {
     authority: PublicKey
+    token: PublicKey
     bump: number
     collectedTokensAmount: BN
     duration: number

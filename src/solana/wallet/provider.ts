@@ -10,7 +10,7 @@ type PhantomEvent = "connect" | "disconnect";
 
 interface Phantom {
     connect: (request: PhantomRequest) => Promise<PhantomResponse>
-    disconnect:() => void
+    disconnect: () => void
     on: (event: Event, callback: () => void) => void;
 }
 
