@@ -24,17 +24,13 @@ export const findEventAddress = async (walletAddress: string | PublicKey): Promi
 }
 
 export const findOfferAddress = async (
-    eventAddress: string | PublicKey,
+    eventAddress: PublicKey,
     index: number
 ): Promise<FindProgramResponse> => {
-    const eventAddressPublicKey = eventAddress instanceof PublicKey
-        ? eventAddress
-        : new PublicKey(eventAddress)
-
     const [programAddress, bumpAddress] = await web3.PublicKey.findProgramAddress(
         [
             utils.bytes.utf8.encode("offer"),
-            eventAddressPublicKey.toBuffer(),
+            eventAddress.toBuffer(),
             new BN(index).toArrayLike(Buffer)
         ],
         program.programId

@@ -3,12 +3,18 @@ import './CreatePage.css'
 import BaseButton from "../../components/common/buttons/BaseButton";
 
 interface FormProps {
-    setNftAddress: (s: string) => void
+    setNftAddress: (s: string) => void,
+    submitEvent: () => Promise<any>
     submitNftAddress: (e: React.MouseEvent<HTMLButtonElement>) => void
     nftAddress: string
 }
 
-const AddForm = React.memo<FormProps>(({nftAddress, setNftAddress, submitNftAddress}) => {
+const AddForm = React.memo<FormProps>(({
+    nftAddress,
+    setNftAddress,
+    submitEvent,
+    submitNftAddress
+}) => {
 
     return (
         <div className="container flex gap-1 my-4">
@@ -26,9 +32,10 @@ const AddForm = React.memo<FormProps>(({nftAddress, setNftAddress, submitNftAddr
                         text-base
                         bg-dark-gray font-archivo"
                     placeholder="NFT address"/>
-                <BaseButton onClick={(e) => {
+                <BaseButton onClick={async (e) => {
+                    e.preventDefault()
+                    await submitNftAddress(e)
                     setNftAddress("")
-                    submitNftAddress(e)
                 }} extraClasses={"nft-address-submit " +
                     "bg-gradient-to-br from-sol-green text-sm to-blue-500 rounded-r-xl text-white"}>
                     Add
@@ -36,7 +43,10 @@ const AddForm = React.memo<FormProps>(({nftAddress, setNftAddress, submitNftAddr
             </form>
 
             <BaseButton
-                onClick={(e) => (e.preventDefault())}
+                onClick={async (e) => {
+                    e.preventDefault()
+                    await submitEvent()
+                }}
                 data-bs-toggle="modal" data-bs-target="#exampleModalCenteredScrollable"
                 extraClasses="ml-auto bg-gradient-to-br from-sol-green text-sm to-blue-500 rounded-xl text-white">
                 Submit

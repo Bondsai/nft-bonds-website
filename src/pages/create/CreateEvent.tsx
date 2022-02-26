@@ -20,6 +20,7 @@ const CreateEvent = React.memo<Props>(({
     setEventName,
     setVestingPeriod,
     setEventDuration,
+    setDiscount,
     setEventCreated,
     setTokenAddress,
     callCreateEvent,
@@ -46,31 +47,31 @@ const CreateEvent = React.memo<Props>(({
                 <FloatingLabelInput inputType={"number"} id={"duration"}
                                     placeholder={"Duration"} func={setEventDuration}/>
                 <FloatingLabelInput inputType={"number"} id={"discount"}
-                                    placeholder={"Discount"} func={setTokenAddress}/>
+                                    placeholder={"Discount"} func={setDiscount}/>
                 <FloatingLabelInput inputType={"text"} id={"token-address"}
                                     placeholder={"Token address"} func={setTokenAddress}/>
 
                 {account.length === 0 ?
-                <button className="font-archivo font-semibold px-4 py-2 text-white opacity-90
+                    <button className="font-archivo font-semibold px-4 py-2 text-white opacity-90
                            bg-gradient-to-br from-cyan-300 to-blue-500 rounded-2xl
                            self-start
                            w-1/3
                            mx-auto
                            hover:from-purple-300 hover:to-blue-500">
-                    Connect account
-                </button> :
-                <button className="font-archivo font-semibold px-4 py-2 text-white opacity-90
+                        Connect account
+                    </button> :
+                    <button className="font-archivo font-semibold px-4 py-2 text-white opacity-90
                            bg-gradient-to-br from-cyan-300 to-blue-500 rounded-2xl
                            self-start
                            w-1/3
                            mx-auto
                            hover:from-purple-300 hover:to-blue-500"
-                        onClick={() => {
-                            callCreateEvent(account)
-                            setEventCreated(true)
-                        }}>
-                    Create
-                </button>}
+                            onClick={async () => {
+                                await callCreateEvent(account)
+                                setEventCreated(true)
+                            }}>
+                        Create
+                    </button>}
             </div>
         </div>
     );

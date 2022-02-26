@@ -1,8 +1,8 @@
 import {PublicKey} from "@solana/web3.js";
-import {BN} from "@project-serum/anchor";
-import {findEventAddress, findOfferAddress} from "../find";
+import {BN, utils, web3} from "@project-serum/anchor";
 import {NETWORK, program} from "../core/program";
 import {getNFT, ImageTokenMetadata} from "../requests";
+import {findEventAddress, findOfferAddress} from "../find";
 
 export interface EventOfferResponse {
     authority: PublicKey
@@ -19,18 +19,19 @@ export interface NftOfferResponse {
 }
 
 export const getEventOffer = async (
-    eventAddress: string | PublicKey,
+    eventAddress: PublicKey,
     index: number
 ): Promise<EventOfferResponse> => {
     const {programAddress} = await findOfferAddress(eventAddress, index)
-    return await program.account.offerAccount.fetch(programAddress) as any
+    return await program.account.offer.fetch(programAddress) as any
 }
 
 export const getEventOfferWithNFT = async (
-    eventAddress: string | PublicKey,
+    authority: PublicKey,
     index: number
 ): Promise<NftOfferResponse> => {
-    const offer = await getEventOffer(eventAddress, index)
+    const {programAddress} = await findEventAddress(authority)
+    const offer = await getEventOffer(programAddress, index)
     const token = await getNFT(offer.kindOfTokenWantedInReturn.toString(), NETWORK)
     return {offer, token}
 }

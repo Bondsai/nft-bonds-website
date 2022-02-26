@@ -11,7 +11,7 @@ interface MakeOfferParams {
     nftAddress: PublicKey,
     tokenAddress: PublicKey,
     index: number,
-    price: string
+    price: string | number
 }
 
 export const makeOffer = async ({
@@ -25,12 +25,18 @@ export const makeOffer = async ({
 
     const {programAddress, bumpAddress} = await findOfferAddress(eventAddress, index)
 
+    console.log("OFFER " + programAddress)
+
     const [escrowedTokensOfOfferMaker, escrowedTokensOfOfferMakerBump] = await web3.PublicKey.findProgramAddress(
         [programAddress.toBuffer()],
         program.programId
     )
 
+    console.log("ESC " + escrowedTokensOfOfferMaker)
+
     const offerMakerPlatformTokensTokenAccount = await createOrFindAssociatedAccount(offerMakerAddress, tokenAddress)
+
+    console.log("Assc:" + offerMakerPlatformTokensTokenAccount)
 
     await program.rpc.makeOffer(
         bumpAddress,

@@ -1,13 +1,6 @@
 import React, {useState} from "react";
-import Modal from "./Modal";
 import CreateEvent from "./CreateEvent";
-import AddForm from "./AddForm";
-import NftListVerbose from "./NftListVerbose";
 import {AccountContext} from "../../App";
-import {Popover} from "@headlessui/react";
-import WalletButton from "../profile/WalletButton";
-import SignedInProfilePage from "../profile/SignedInProfilePage";
-import ConnectWalletButton from "../../components/common/auth/ConnectWalletButton";
 import {createEvent} from "../../solana/rpc/createEvent";
 import {PublicKey} from "@solana/web3.js";
 import AddNft from "./AddNft";
@@ -33,23 +26,6 @@ const CreatePage = () => {
     const [nftAddress, setNftAddress] = useState('')
     const [rows, setRows] = useState<Row[]>([])
 
-    const callCreateEvent = async (account: string) => {
-        console.log(account)
-
-        const fields = {
-            offerMaker: new PublicKey(account),
-            name: eventName,
-            duration: eventDuration,
-            discount: discount,
-            vesting: vestingPeriod,
-            tokenAddress: tokenAddress
-        }
-
-        console.log(fields)
-
-        return await createEvent(fields)
-    }
-
     const addNewRow = (e: React.MouseEvent<HTMLButtonElement>) => {
         e.preventDefault()
         setRows([...rows, {id: rows.length + 1, text: nftAddress}])
@@ -65,18 +41,30 @@ const CreatePage = () => {
             {({account, changeAccount}) =>
                 (eventCreated && account.length !== 0 ?
                         <AddNft setNftAddress={setNftAddress}
+                                tokenAddress={tokenAddress}
                                 addNewRow={addNewRow}
                                 nftAddress={nftAddress}
                                 rows={rows}
                                 removeRow={removeRow}
-                                account={account}/>:
+                                account={account}/> :
                         <CreateEvent setEventName={setEventName}
                                      setVestingPeriod={setVestingPeriod}
                                      setEventDuration={setEventDuration}
                                      setEventCreated={setEventCreated}
                                      setDiscount={setDiscount}
                                      setTokenAddress={setTokenAddress}
-                                     callCreateEvent={callCreateEvent}
+                                     callCreateEvent={async () => {
+                                         const fields = {
+                                             offerMaker: new PublicKey(account),
+                                             name: eventName,
+                                             duration: eventDuration,
+                                             discount: discount,
+                                             vesting: vestingPeriod,
+                                             tokenAddress: tokenAddress
+                                         }
+                                         console.log(fields)
+                                         return await createEvent(fields)
+                                     }}
                                      account={account}/>
                 )
             }

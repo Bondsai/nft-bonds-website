@@ -16,10 +16,12 @@ export interface EventResponse {
     title: string
     collectedNfts: number
     totalNfts: number
-    vestingTime: number
+    vestingTime: number,
+    eventAddress: PublicKey
 }
 
 export const getEvent = async (walletAccount: string | PublicKey): Promise<EventResponse> => {
     const {programAddress} = await findEventAddress(walletAccount)
-    return await program.account.eventAccount.fetch(programAddress) as any
+    const response = await program.account.eventAccount.fetch(programAddress) as EventResponse
+    return {...response, eventAddress: programAddress}
 }

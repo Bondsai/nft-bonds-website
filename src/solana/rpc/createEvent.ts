@@ -23,12 +23,11 @@ export const createEvent = async ({
 
     const {programAddress, bumpAddress} = await findEventAddress(offerMaker)
 
-    const response = await program.rpc.createEvent(bumpAddress, name, duration, discount, vesting, new PublicKey(tokenAddress), {
+    return await program.rpc.createEvent(bumpAddress, name, duration, discount, vesting, new PublicKey(tokenAddress), {
         accounts: {
             authority: offerMaker,
             eventAccount: programAddress,
             systemProgram: web3.SystemProgram.programId,
         }
     })
-
 }
