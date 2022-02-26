@@ -1,36 +1,34 @@
-import {web3, utils, getProvider} from '@project-serum/anchor';
+import {web3} from '@project-serum/anchor';
 import {PublicKey} from "@solana/web3.js";
 import {program} from "../core/program";
+import {findEventAddress} from "../find";
 
 interface CreateEventInputFields {
-    name: string,
-    duration: number,
-    discount: number,
+    offerMaker: PublicKey
+    name: string
+    duration: number
+    discount: number
+    vesting: number
     accountId: string
+    tokenAddress: string
 }
 
 const createEvent = async ({
+    offerMaker,
     name,
     duration,
     discount,
-    accountId
+    vesting,
+    tokenAddress,
 }: CreateEventInputFields) => {
 
-    const creatorAccount = new PublicKey(accountId).toBuffer()
+    const {programAddress, bumpAddress} = await findEventAddress(offerMaker)
 
-    const [eventAccount, eventAccountBump] = await web3.PublicKey.findProgramAddress(
-        [
-            utils.bytes.utf8.encode("event"),
-            creatorAccount
-        ],
-        program.programId
-    )
-
-    return await program.rpc.createEvent(eventAccountBump, name, duration, discount, {
+    return await program.rpc.createEvent(bumpAddress, name, duration, discount, vesting, new PublicKey(tokenAddress), {
         accounts: {
-            eventAccount: eventAccount,
-            authority: getProvider().wallet.publicKey,
+            authority: offerMaker,
+            eventAccount: programAddress,
             systemProgram: web3.SystemProgram.programId,
-        },
+        }
     })
 }
