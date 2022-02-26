@@ -22,4 +22,3 @@ const getProvider = (network: Network) => {
 
 export const BondProgramID = new PublicKey("GaEj4R5SVdsoV28KT3aDHp21xBTatUCyQ3LVLtBNWXPx");
 export const program = new Program(idl, BondProgramID, getProvider(NETWORK));
-export const rpcApiUrl = clusterApiUrl(NETWORK);

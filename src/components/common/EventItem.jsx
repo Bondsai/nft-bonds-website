@@ -3,10 +3,9 @@ import {BiTimeFive} from "react-icons/bi";
 import {ImCheckmark} from "react-icons/im";
 import {IoMdPricetags} from "react-icons/io";
 import Slider from "./slider/Slider";
-import BlueGreenButton from "./buttons/BlueGreenButton";
-import {getNFT} from "../../solana/requests";
 import "../../styles.css"
 import NewSmallLoader from "./loader/NewSmallLoader";
+import {Link} from "react-router-dom";
 
 const EventItem = ({item}) => {
     const [images, setImages] = useState([])
@@ -64,8 +63,12 @@ const EventItem = ({item}) => {
                     Distributed: {collected}/{all}
                 </div>
             </div>
-            <div className="justify-center flex mb-5 mt-2">
-                <BlueGreenButton onClick={() => console.log('clicked')} title="Learn more"/>
+            <div className="justify-center flex">
+                <Link to={`/event/${item.authority.toString()}`}
+                      className="px-7 py-1 bg-gradient-to-br from-sol-green text-sm to-blue-500 text-white rounded-xl mb-5 mt-2"
+                >
+                    Learn more
+                </Link>
             </div>
         </div>
     );
