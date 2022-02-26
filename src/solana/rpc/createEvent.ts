@@ -9,11 +9,10 @@ interface CreateEventInputFields {
     duration: number
     discount: number
     vesting: number
-    accountId: string
     tokenAddress: string
 }
 
-const createEvent = async ({
+export const createEvent = async ({
     offerMaker,
     name,
     duration,
