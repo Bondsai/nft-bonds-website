@@ -11,7 +11,7 @@ const BaseButton: React.FC<ButtonProps &
     ...props
 }) => {
     return (
-        <button className={"px-7 py-[4px] " + extraClasses}
+        <button className={"px-7 py-1 " + extraClasses}
                 {...props}
         >
             {children}

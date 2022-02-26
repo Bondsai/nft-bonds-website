@@ -26,14 +26,20 @@ module.exports = {
         extend: {
             width: {
                 '150px': '150px',
+                '158px' : '158px',
+                '193px' : '193px'
             },
             height: {
-                'screen-skip-nav' : 'calc(100vh-64px)'
+                'screen-skip-nav' : 'calc(100vh-64px)',
+                '156px' : '156px',
+                '193px' : '193px',
             },
             spacing: {
-                'skip-nav': 'calc(100vh-64px)'
+                'skip-nav': 'calc(100vh-64px)',
+                '158px' : '158px'
             },
             colors: {
+                'cyan-300': '#67e8f9',
                 'sol-gray': 'rgb(35, 39, 45)',
                 'sol-gray-input-hover': 'rgb(55, 59, 65)',
                 'sol-gray-button-hover': 'rgba(85, 89, 95, 0.5)',

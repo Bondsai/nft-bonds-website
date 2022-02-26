@@ -1,6 +1,6 @@
 import {web3, utils, getProvider} from '@project-serum/anchor';
 import {PublicKey} from "@solana/web3.js";
-import {program} from "../core";
+import {program} from "../core/program";
 
 interface CreateEventInputFields {
     name: string,

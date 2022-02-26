@@ -1,8 +1,10 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
-import {ImageTokenMetadata} from "../../API/solana/requests";
+import {ImageTokenMetadata} from "../../solana/requests";
+import {EventResponse} from "../../solana/rpc/getEvent";
 
 export interface EventPreviewState {
     tokens: ImageTokenMetadata[],
+    event?: EventResponse
     fetching: boolean,
     from: number,
     limit: number
@@ -22,6 +24,11 @@ export const eventPreviewSlice = createSlice({
     reducers: {
         toggleFetching: (state, action: PayloadAction<boolean>) => {
             state.fetching = action.payload
+        },
+
+        setEvent: (state, action: PayloadAction<EventResponse>) => {
+            console.log(action.payload)
+            state.event = action.payload
         },
 
         setTokens: (state, action: PayloadAction<ImageTokenMetadata[]>) => {

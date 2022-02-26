@@ -17,7 +17,7 @@ const Navbar = () => {
     const links: LinkProps[] = [
         {name: "Explore", link: "/explore", icon: <CgNotes/>},
         {name: "Create", link: "/create", icon: <BsFileEarmarkPlus/>},
-        {name: "Event", link: "/event", icon: <BsCalendarEvent/>}
+        // {name: "Event", link: "/event", icon: <BsCalendarEvent/>}
     ]
 
     return (
