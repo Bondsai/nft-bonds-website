@@ -9,13 +9,15 @@ interface Props {
     setVestingPeriod: (n: number) => void
     setEventDuration: (n: number) => void
     setEventCreated: (b: boolean) => void
+    setTokenAddress: (s: string) => void
 }
 
 const CreateEvent = React.memo<Props>(({
                                            setEventName,
                                            setVestingPeriod,
                                            setEventDuration,
-                                           setEventCreated
+                                           setEventCreated,
+                                           setTokenAddress
                                        }) => {
     return (
         <div className="w-1/3 mx-auto pt-12">
@@ -37,13 +39,15 @@ const CreateEvent = React.memo<Props>(({
                                     placeholder={"Vesting period"} func={setVestingPeriod}/>
                 <FloatingLabelInput inputType={"number"} id={"duration"}
                                     placeholder={"Duration"} func={setEventDuration}/>
+                <FloatingLabelInput inputType={"text"} id={"token-address"}
+                                    placeholder={"Token address"} func={setTokenAddress}/>
 
                 <button className="font-archivo font-semibold px-4 py-2 text-white opacity-90
                            bg-gradient-to-br from-cyan-300 to-blue-500 rounded-2xl
                            self-start
                            w-1/3
                            mx-auto
-                           hover:to-blue-500 hover:from-purple-300"
+                           hover:from-purple-300 hover:to-blue-500"
                         onClick={() => setEventCreated(true)}>
                     Create
                 </button>

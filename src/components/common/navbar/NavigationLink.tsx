@@ -17,34 +17,18 @@ const NavigationLink = React.memo<LinkProps>(({
     onClick
 }) => {
     return (
-        <div>
-            {isActive ?
-                <Link
-                    onClick={onClick}
-                    to={link}
-                    className="text-sol-green font-archivo text-sm font-semibold inline-flex gap-2 items-center"
-                    style={{
-                        letterSpacing: 1
-                    }}
-                >
-                    {icon}
-                    {name}
-                </Link>
-                :
-                <Link
-                    onClick={onClick}
-                    to={link}
-                    className="text-sol-white font-archivo text-sm font-semibold hover:text-sol-sea
-                         inline-flex gap-2 items-center"
-                    style={{
-                        letterSpacing: 1
-                    }}
-                >
-                    {icon}
-                    {name}
-                </Link>
-        }
-        </div>
+        <Link
+            onClick={onClick}
+            to={link}
+            className={
+                (isActive ? "text-sol-green" : "text-sol-white font-archivo hover:text-sol-sea") +
+                " font-archivo font-semibold flex gap-2 items-center"}
+            style={{
+                letterSpacing: 1
+            }}>
+            {icon}
+            {name}
+        </Link>
     );
 });
 

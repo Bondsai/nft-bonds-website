@@ -17,6 +17,7 @@ const CreatePage = () => {
     const [eventName, setEventName] = useState('')
     const [eventDuration, setEventDuration] = useState(0)
     const [vestingPeriod, setVestingPeriod] = useState(0)
+    const [tokenAddress, setTokenAddress] = useState('')
 
     const [eventCreated, setEventCreated] = useState(false)
 
@@ -44,7 +45,8 @@ const CreatePage = () => {
                 <CreateEvent setEventName={setEventName}
                              setVestingPeriod={setVestingPeriod}
                              setEventDuration={setEventDuration}
-                             setEventCreated={setEventCreated}/>
+                             setEventCreated={setEventCreated}
+                             setTokenAddress={setTokenAddress}/>
             }
         </>
     );
