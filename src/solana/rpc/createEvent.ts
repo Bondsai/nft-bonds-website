@@ -9,7 +9,6 @@ interface CreateEventInputFields {
     duration: number
     discount: number
     vesting: number
-    accountId: string
     tokenAddress: string
 }
 
