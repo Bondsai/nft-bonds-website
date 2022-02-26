@@ -5,6 +5,11 @@ import {useAppDispatch, useAppSelector} from "../../hooks/redux";
 import {fetchEventData} from "../../store/event/thunk";
 import ExploreLoader from "../../components/common/loader/ExploreLoader";
 import NotFoundPage from "../NotFoundPage";
+import {AccountContext} from "../../App";
+import {Popover} from "@headlessui/react";
+import WalletButton from "../profile/WalletButton";
+import SignedInProfilePage from "../profile/SignedInProfilePage";
+import ConnectWalletButton from "../../components/common/auth/ConnectWalletButton";
 
 type RouterParams = {
     userAccount: string

@@ -9,6 +9,10 @@ import "../../styles.css"
 import {EventResponse} from "../../solana/rpc/getEvent";
 import "../../styles.css"
 import NewSmallLoader from "../../components/common/loader/NewSmallLoader";
+import {useAppDispatch, useAppSelector} from "../../hooks/redux";
+import {fetchOffers} from "../../store/offers/thunk";
+import {getSolanaProvider} from "../../solana/wallet/provider";
+import {PublicKey} from "@solana/web3.js";
 
 
 interface EventScreenProps {
@@ -16,28 +20,17 @@ interface EventScreenProps {
 }
 
 const EventPage: React.FC<EventScreenProps> = ({
-    event
+    event,
 }) => {
 
-    // const {event, fetching} = useAppSelector(state => state.eventPreview)
-    // const lastElement = useRef<HTMLDivElement>(null)
-    //
-    // const dispatch = useAppDispatch()
+    const {offers} = useAppSelector(state => state.offers)
 
+    const dispatch = useAppDispatch()
+    console.log(offers)
 
-
-    // useObserver(lastElement, true, fetching, () => {
-    //     dispatch(fetchEventTokens(tokenIDs))
-    // })
-
-
-    // useEffect(() => {
-    //     dispatch(fetchEventTokens(tokenIDs))
-    //     return () => {
-    //         dispatch(eventPreviewSlice.actions.reset())
-    //     }
-    // }, [])
-    //
+    useEffect(() => {
+        dispatch(fetchOffers(event.authority, [0]))
+    }, [])
 
     const [searchTokenId, setSearchTokenId] = useState('')
     const [activeTab, setActiveTab] = useState(EventTab.AllNfts)
@@ -60,7 +53,8 @@ const EventPage: React.FC<EventScreenProps> = ({
                     </div>
                 </div>
                 <div className="w-full flex justify-center mt-5">
-                    <EventTabBar activeTab={activeTab} setActiveTab={setActiveTab} allTabs={[EventTab.AllNfts, EventTab.CollectedNfts, EventTab.NotCollectedNfts]}/>
+                    <EventTabBar activeTab={activeTab} setActiveTab={setActiveTab}
+                                 allTabs={[EventTab.AllNfts, EventTab.CollectedNfts, EventTab.NotCollectedNfts]}/>
                 </div>
                 <div className="space-y-2">
                     <div className="pl-2 text-white font-archivo font-bold">Filter</div>
