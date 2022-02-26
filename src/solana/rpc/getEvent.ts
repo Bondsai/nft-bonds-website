@@ -15,6 +15,7 @@ export interface EventResponse {
     percent: number
     startTime: BN
     title: string
+    collectedNfts: number
     totalNfts: number
     vestingTime: number
 }
