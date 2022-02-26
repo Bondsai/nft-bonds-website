@@ -16,8 +16,10 @@ const EventItem = ({item}) => {
         for (let i = 0; i < item.totalNfts; i++) {
             try {
                 const resp = await getEventOfferWithNFT(item.authority, i)
+                console.log(resp)
                 urls.push(resp.token.image)
             } catch (e) {
+                urls.push("")
                 console.log(e.message)
             }
         }
