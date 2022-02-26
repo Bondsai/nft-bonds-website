@@ -1,36 +1,53 @@
-export const makeOffer = () => {
+import {program} from "../core/program";
+import {BN, utils, web3} from "@project-serum/anchor";
+import {PublicKey} from "@solana/web3.js";
+import {findOfferAddress} from "../find";
+import {TOKEN_PROGRAM_ID} from "@solana/spl-token";
 
-    // const [offer, offerBump] = await anchor.web3.PublicKey.findProgramAddress(
-    //     [
-    //         anchor.utils.bytes.utf8.encode("offer"),
-    //         eventAccount.toBuffer(),
-    //         new anchor.BN(0).toArrayLike(Buffer)
-    //     ],
-    //     program.programId
-    // )
-    //
-    // const [escrowedTokensOfOfferMaker, escrowedTokensOfOfferMakerBump] = await anchor.web3.PublicKey.findProgramAddress(
-    //     [offer.toBuffer()],
-    //     program.programId
-    // )
-    //
-    // await program.rpc.makeOffer(
-    //     offerBump,
-    //     escrowedTokensOfOfferMakerBump,
-    //     new anchor.BN(TOKENS_OFFER_AMOUNT),
-    //     {
-    //         accounts: {
-    //             eventAccount: eventAccount,
-    //             offer: offer,
-    //             authority: offerMaker.publicKey,
-    //             tokenAccountFromWhoMadeTheOffer: offerMakerPlatformTokensTokenAccount,
-    //             escrowedTokensOfOfferMaker: escrowedTokensOfOfferMaker,
-    //             kindOfTokenOffered: platformTokensMint.publicKey,
-    //             kindOfTokenWantedInReturn: nftMint.publicKey,
-    //             tokenProgram: spl.TOKEN_PROGRAM_ID,
-    //             systemProgram: anchor.web3.SystemProgram.programId,
-    //             rent: anchor.web3.SYSVAR_RENT_PUBKEY
-    //         }
-    //     }
-    // );
+interface MakeOfferParams {
+    eventAddress: PublicKey,
+    offerMakerAddress: PublicKey,
+    nftAddress: PublicKey,
+    tokenAddress: PublicKey,
+    offerMakerPlatformTokensTokenAccount: PublicKey,
+    index: number,
+    price: string
+}
+
+export const makeOffer = async ({
+    eventAddress,
+    offerMakerAddress,
+    tokenAddress,
+    nftAddress,
+    offerMakerPlatformTokensTokenAccount,
+    index,
+    price
+}: MakeOfferParams) => {
+
+    const {programAddress, bumpAddress} = await findOfferAddress(eventAddress, index)
+
+    const [escrowedTokensOfOfferMaker, escrowedTokensOfOfferMakerBump] = await web3.PublicKey.findProgramAddress(
+        [programAddress.toBuffer()],
+        program.programId
+    )
+
+    await program.rpc.makeOffer(
+        bumpAddress,
+        escrowedTokensOfOfferMakerBump,
+        new BN(price),
+        {
+            accounts: {
+                eventAccount: eventAddress,
+                offer: programAddress,
+                authority: offerMakerAddress,
+                tokenAccountFromWhoMadeTheOffer: offerMakerPlatformTokensTokenAccount,
+                escrowedTokensOfOfferMaker: escrowedTokensOfOfferMaker,
+                kindOfTokenOffered: tokenAddress,
+                kindOfTokenWantedInReturn: nftAddress,
+                tokenProgram: TOKEN_PROGRAM_ID,
+                systemProgram: web3.SystemProgram.programId,
+                rent: web3.SYSVAR_RENT_PUBKEY
+            }
+        }
+    )
 }
