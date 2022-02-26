@@ -1,15 +1,15 @@
 import {program} from "../core/program";
 import {BN, web3} from "@project-serum/anchor";
 import {PublicKey} from "@solana/web3.js";
-import {findOfferAddress} from "../find";
-import {TOKEN_PROGRAM_ID} from "@solana/spl-token";
+import {findAssociatedTokenAddress, findOfferAddress} from "../find";
+import {Token, TOKEN_PROGRAM_ID} from "@solana/spl-token";
+import {getSolanaProvider} from "../wallet/provider";
 
 interface MakeOfferParams {
     eventAddress: PublicKey,
     offerMakerAddress: PublicKey,
     nftAddress: PublicKey,
     tokenAddress: PublicKey,
-    offerMakerPlatformTokensTokenAccount: PublicKey,
     index: number,
     price: string
 }
@@ -19,7 +19,6 @@ export const makeOffer = async ({
     offerMakerAddress,
     tokenAddress,
     nftAddress,
-    offerMakerPlatformTokensTokenAccount,
     index,
     price
 }: MakeOfferParams) => {
@@ -30,6 +29,8 @@ export const makeOffer = async ({
         [programAddress.toBuffer()],
         program.programId
     )
+
+    const offerMakerPlatformTokensTokenAccount = await createOrFindAssociatedAccount(offerMakerAddress, tokenAddress)
 
     await program.rpc.makeOffer(
         bumpAddress,
@@ -52,9 +53,20 @@ export const makeOffer = async ({
     )
 }
 
+export const createTokenInstance = (tokenAddress: PublicKey, walletAddress: PublicKey) => {
+    return new Token(
+        program.provider.connection,
+        tokenAddress,
+        TOKEN_PROGRAM_ID,
+        (getSolanaProvider() as any).wallet
+    )
+};
 
-// export const initEvent = (tokenAddress: PublicKey, offerMaker: PublicKey) => {
-//     return await tokenAddress.createAssociatedTokenAccount(
-//         offerMaker
-//     )
-// }
+export const createOrFindAssociatedAccount = async (walletAddress: PublicKey, tokenAddress: PublicKey) => {
+     return findAssociatedTokenAddress(walletAddress, tokenAddress)
+        .then(response => response)
+        .catch(async () => {
+            const token = createTokenInstance(tokenAddress, walletAddress)
+            return await token.createAssociatedTokenAccount(walletAddress)
+        })
+}

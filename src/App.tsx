@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import AppRouter from "./AppRouter";
 import Navbar from "./components/common/navbar/Navbar";
 import {useWalletConnection} from "./hooks/useWalletConnection";

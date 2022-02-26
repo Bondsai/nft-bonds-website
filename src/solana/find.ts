@@ -49,10 +49,10 @@ export enum SplAssociatedTokenProgramId {
     Devnet = "ATokenGPvbdGVxr1b2hvZbsiqW5xWH25efTNsLJA8knL"
 }
 
-async function findAssociatedTokenAddress(
+export const findAssociatedTokenAddress = async (
     walletAddress: PublicKey,
     tokenMintAddress: PublicKey
-): Promise<PublicKey> {
+): Promise<PublicKey> => {
     const response = await PublicKey.findProgramAddress(
         [
             walletAddress.toBuffer(),
