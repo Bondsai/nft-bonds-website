@@ -30,7 +30,6 @@ const AddNft = React.memo<Props> (({
         findEventAddress(new PublicKey(account)).then(r => (setResponse(r)))
     }, [])
 
-
     return (
         <div className="flex flex-col mx-auto w-3/4">
             <AddForm setNftAddress={setNftAddress} submitNftAddress={addNewRow}
