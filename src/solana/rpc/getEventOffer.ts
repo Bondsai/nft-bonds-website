@@ -11,6 +11,7 @@ export interface EventOfferResponse {
     kindOfTokenWantedInReturn: PublicKey
     escrowedTokensOfOfferMakerBump: number
     bump: number
+    offerAccount: PublicKey
 }
 
 export interface NftOfferResponse {
@@ -23,7 +24,8 @@ export const getEventOffer = async (
     index: number
 ): Promise<EventOfferResponse> => {
     const {programAddress} = await findOfferAddress(eventAddress, index)
-    return await program.account.offer.fetch(programAddress) as any
+    const response = await program.account.offer.fetch(programAddress) as EventOfferResponse
+    return {...response, offerAccount: programAddress}
 }
 
 export const getEventOfferWithNFT = async (

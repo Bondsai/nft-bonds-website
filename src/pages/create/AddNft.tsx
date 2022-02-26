@@ -26,6 +26,7 @@ const AddNft = React.memo<Props>(({
 }) => {
     const [eventAddress, setEventAddress] = useState<string | null>(null)
     const [nftAddress, setNftAddress] = useState('')
+    const [index, setIndex] = useState(0)
 
     useEffect(() => {
         findEventAddress(new PublicKey(account))
@@ -34,13 +35,13 @@ const AddNft = React.memo<Props>(({
 
     console.log(eventAddress, account, tokenAddress, nftAddress)
 
-    const add = async (eventAddress: string, nftAddress: string) => {
+    const add = async (eventAddress: string, nftAddress: string, index: number) => {
         return await makeOffer({
             eventAddress: new PublicKey(eventAddress),
             offerMakerAddress: new PublicKey(account),
             tokenAddress: new PublicKey(tokenAddress),
             nftAddress: new PublicKey(nftAddress),
-            index: 0,
+            index,
             price: 1
         })
     }
@@ -55,7 +56,8 @@ const AddNft = React.memo<Props>(({
                      }}
                      submitNftAddress={async () => {
                          if (eventAddress && nftAddress) {
-                             await add(eventAddress, nftAddress)
+                             await add(eventAddress, nftAddress, index)
+                             setIndex(index + 1)
                          }
                      }}
                      nftAddress={nftAddress}

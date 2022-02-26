@@ -2,19 +2,22 @@ import React from 'react';
 import TokenPriceBlock from "../coin/TokenPriceBlock";
 import {SiEthereum} from 'react-icons/si'
 import {HiOutlineCheckCircle} from "react-icons/hi";
+import {acceptOffer, AcceptOfferParams} from "../../../solana/rpc/acceptOffer";
 
 interface EventNftLineProps {
     mintAddress: string,
     image?: string,
     name: string,
-    isCollected: boolean
+    isCollected: boolean,
+    params: AcceptOfferParams
 }
 
 const EventNftLine = React.memo<EventNftLineProps>(({
     mintAddress,
     image,
     name,
-    isCollected
+    isCollected,
+    params,
 }) => {
     return (
         <div className="overflow-hidden font-archivo
@@ -39,7 +42,10 @@ const EventNftLine = React.memo<EventNftLineProps>(({
                         Collected
                         <HiOutlineCheckCircle/>
                     </div>
-                    : <button>Sell</button>
+                    :
+                    <button onClick={async () => await acceptOffer(params)}>
+                        Sell
+                    </button>
             }</div>
         </div>
     );

@@ -11,8 +11,12 @@ import "../../styles.css"
 import NewSmallLoader from "../../components/common/loader/NewSmallLoader";
 import {useAppDispatch, useAppSelector} from "../../hooks/redux";
 import {fetchOffers} from "../../store/offers/thunk";
-import {getSolanaProvider} from "../../solana/wallet/provider";
+import {useObserver} from "../../hooks/useObserver";
+import {eventOffersSlice} from "../../store/offers/offers";
+import {eventPreviewSlice} from "../../store/event/preview";
+import {acceptOffer, AcceptOfferParams} from "../../solana/rpc/acceptOffer";
 import {PublicKey} from "@solana/web3.js";
+import {AccountContext} from "../../App";
 
 
 interface EventScreenProps {
@@ -23,68 +27,89 @@ const EventPage: React.FC<EventScreenProps> = ({
     event,
 }) => {
 
-    const {offers} = useAppSelector(state => state.offers)
+    const {offers, from, limit, fetching, hasMore} = useAppSelector(state => state.offers)
+    const lastElement = useRef<any>()
 
     const dispatch = useAppDispatch()
-    console.log(offers)
 
     useEffect(() => {
-        dispatch(fetchOffers(event.authority, [0]))
+        dispatch(fetchOffers(event.authority, from, limit))
+        return () => {
+            dispatch(eventPreviewSlice.actions.reset())
+            dispatch(eventOffersSlice.actions.reset())
+        }
     }, [])
+
+    useObserver(lastElement, hasMore, fetching, () => {
+        dispatch(fetchOffers(event.authority, from, limit))
+    })
 
     const [searchTokenId, setSearchTokenId] = useState('')
     const [activeTab, setActiveTab] = useState(EventTab.AllNfts)
 
     return (
-        <div className="max-w-screen-2xl mx-auto">
-            <div className="flex flex-col pt-12 px-4 justify-center max-w-max mx-auto gap-8 md:gap-14">
-                <div>
-                    <EventTitle title={event.title}/>
-                    <div className="flex flex-col md:flex-row w-full mt-5 md:mt-10 gap-5">
-                        <InfoBlock discount={event.percent}
-                                   vesting={event.vestingTime}
-                                   collectedTokensAmount={event.collectedTokensAmount.toString()}
-                                   fullTokensAmount={event.fullTokensAmount.toString()}
-                                   totalNfts={event.totalNfts.toString()}
-                        />
-                    </div>
-                    <div>
+        <AccountContext.Consumer>
+            {({account, changeAccount}) =>
+                (<div className="max-w-screen-2xl mx-auto">
+                        <div className="flex flex-col pt-12 px-4 justify-center max-w-max mx-auto gap-8 md:gap-14">
+                            <div>
+                                <EventTitle title={event.title}/>
+                                <div className="flex flex-col md:flex-row w-full mt-5 md:mt-10 gap-5">
+                                    <InfoBlock discount={event.percent}
+                                               vesting={event.vestingTime}
+                                               collectedTokensAmount={event.collectedTokensAmount.toString()}
+                                               fullTokensAmount={event.fullTokensAmount.toString()}
+                                               totalNfts={event.totalNfts.toString()}
+                                    />
+                                </div>
+                                <div>
 
+                                </div>
+                            </div>
+                            <div className="w-full flex justify-center mt-5">
+                                <EventTabBar activeTab={activeTab} setActiveTab={setActiveTab}
+                                             allTabs={[EventTab.AllNfts, EventTab.CollectedNfts, EventTab.NotCollectedNfts]}/>
+                            </div>
+                            <div className="space-y-2">
+                                <div className="pl-2 text-white font-archivo font-bold">Filter</div>
+                                <TokenSearchInput tokenId={searchTokenId} setTokenId={setSearchTokenId}/>
+                            </div>
+                            <div className="mb-7">
+                                <div className="flex flex-col bg-gray-900 rounded-2xl
+                                    px-3 md:px-6 overflow-hidden mb-10"
+                                >
+                                    {offers.map((offer, index) =>
+                                        <>
+                                            <EventNftLine key={offer.token.meta.pubkey.toString()}
+                                                          mintAddress={offer.token.meta.data.mint}
+                                                          name={offer.token.meta.data.data.name}
+                                                          isCollected={offer.offer.isCollected}
+                                                          image={offer.token.image}
+                                                          params={{
+                                                              authorityAccount: event.authority,
+                                                              offerAccount: offer.offer.offerAccount,
+                                                              eventAccount: event.eventAddress,
+                                                              offerTaker: new PublicKey(account),
+                                                              tokenAddress: event.token,
+                                                              nftMintAccount: offer.offer.kindOfTokenWantedInReturn,
+                                                          }}
+                                            />
+                                            {index !== offers.length - 1 && <hr className="hr-color"/>}
+                                        </>
+                                    )}
+                                </div>
+                                {fetching
+                                    ? <div className="pb-9">
+                                        <NewSmallLoader/>
+                                    </div>
+                                    : <div ref={lastElement}/>
+                                }
+                            </div>
+                        </div>
                     </div>
-                </div>
-                <div className="w-full flex justify-center mt-5">
-                    <EventTabBar activeTab={activeTab} setActiveTab={setActiveTab}
-                                 allTabs={[EventTab.AllNfts, EventTab.CollectedNfts, EventTab.NotCollectedNfts]}/>
-                </div>
-                <div className="space-y-2">
-                    <div className="pl-2 text-white font-archivo font-bold">Filter</div>
-                    <TokenSearchInput tokenId={searchTokenId} setTokenId={setSearchTokenId}/>
-                </div>
-                <div className="mb-7">
-                    {/*<div className="flex flex-col bg-gray-900 rounded-2xl*/}
-                    {/*                px-3 md:px-6 overflow-hidden mb-10"*/}
-                    {/*>*/}
-                    {/*    {tokens.map((token, index) =>*/}
-                    {/*        <>*/}
-                    {/*            <EventNftLine key={token.meta.pubkey.toString()}*/}
-                    {/*                          mintAddress={token.meta.data.mint}*/}
-                    {/*                          name={token.meta.data.data.name}*/}
-                    {/*                          isCollected={true}*/}
-                    {/*                          image={token.image}*/}
-                    {/*            />*/}
-                    {/*            {index !== tokens.length - 1 && <hr className="hr-color"/>}*/}
-                    {/*        </>*/}
-                    {/*    )}*/}
-                    {/*</div>*/}
-                    {/*{fetching*/}
-                    {/*    ? <div className="pb-9">*/}
-                    {/*        <NewSmallLoader/>*/}
-                    {/*        </div>*/}
-                    {/*    : <div ref={lastElement}/>*/}
-                    {/*}*/}
-                </div>
-            </div>
-        </div>
+                )
+            }
+        </AccountContext.Consumer>
     );
 };
 

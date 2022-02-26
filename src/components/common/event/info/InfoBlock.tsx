@@ -40,7 +40,7 @@ const InfoBlock = React.memo<EventInfoBlockProps>(({
                         md:flex-row md:px-6 md:py-4 md:w-full"
         >
             <EventInfoCell name="Distributed tokens" description="Amount of tokens to distribute">
-                {collectedTokensAmount} / {fullTokensAmount} SOL
+                {collectedTokensAmount} / {fullTokensAmount} DAO TOKEN
             </EventInfoCell>
             <EventInfoSeparator/>
             <EventInfoCell name="Discount" description="Value">
