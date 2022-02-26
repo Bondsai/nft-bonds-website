@@ -1,3 +1,34 @@
 .cross-icon:hover {
     cursor: pointer;
 }
+
+.float-label {
+    transition-property: all;
+    transform-origin: left;
+    transition-timing-function: ease-in-out;
+    transition-duration: 100ms;
+
+    --tw-scale-x: .75;
+    --tw-scale-y: .75;
+    --tw-translate-y: -0.75rem;
+    --tw-translate-x: 0.25rem;
+    transform: translateX(var(--tw-translate-x)) translateY(var(--tw-translate-y)) rotate(0) skewX(0) skewY(0) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+
+.float-input:placeholder-shown ~ .float-label {
+    --tw-translate-y: 0;
+    --tw-translate-x: 0;
+    --tw-scale-x: 1;
+    --tw-scale-y: 1;
+    transform: translate(var(--tw-translate-x) var(--tw-translate-y)) rotate(0) skewX(0) skewY(0) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+
+.float-input:focus ~ .float-label {
+    opacity: 1;
+
+    --tw-translate-y: -0.75rem;
+    --tw-translate-x: 0.25rem;
+    --tw-scale-x: .75;
+    --tw-scale-y: .75;
+    transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(0) skewX(0) skewY(0) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}

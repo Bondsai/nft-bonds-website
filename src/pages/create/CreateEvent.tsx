@@ -9,16 +9,18 @@ interface Props {
     setVestingPeriod: (n: number) => void
     setEventDuration: (n: number) => void
     setEventCreated: (b: boolean) => void
+    setTokenAddress: (s: string) => void
 }
 
 const CreateEvent = React.memo<Props>(({
                                            setEventName,
                                            setVestingPeriod,
                                            setEventDuration,
-                                           setEventCreated
+                                           setEventCreated,
+                                           setTokenAddress
                                        }) => {
     return (
-        <div className="w-1/3 mx-auto pt-[50px]">
+        <div className="w-1/3 mx-auto pt-12">
             <div className="flex items-center justify-center gap-2">
                 <IconContext.Provider
                     value={{color: "white", size: "2em"}}>
@@ -37,6 +39,8 @@ const CreateEvent = React.memo<Props>(({
                                     placeholder={"Vesting period"} func={setVestingPeriod}/>
                 <FloatingLabelInput inputType={"number"} id={"duration"}
                                     placeholder={"Duration"} func={setEventDuration}/>
+                <FloatingLabelInput inputType={"text"} id={"token-address"}
+                                    placeholder={"Token address"} func={setTokenAddress}/>
 
                 <button className="font-archivo font-semibold px-[16px] py-[8px] text-white opacity-90
                            bg-gradient-to-br from-cyan-300 to-blue-500 rounded-2xl
