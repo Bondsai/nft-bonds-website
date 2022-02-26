@@ -22,7 +22,7 @@ const ConnectWalletButton: React.FC<ConnectWalletProps> = ({setAccount}) => {
     return (
         <button className="font-archivo font-semibold px-4 py-2 text-white opacity-90
                            bg-gradient-to-br from-cyan-300 to-blue-500 rounded-2xl
-                           hover:from-blue-500 hover:to-purple-300"
+                           hover:from-purple-300 hover:to-blue-500"
                 onClick={connect}
         >
             <div className="inline-flex items-center justify-center gap-2">

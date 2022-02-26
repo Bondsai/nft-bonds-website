@@ -47,7 +47,7 @@ const CreateEvent = React.memo<Props>(({
                            self-start
                            w-1/3
                            mx-auto
-                           hover:to-blue-500 hover:from-purple-300"
+                           hover:from-purple-300 hover:to-blue-500"
                         onClick={() => setEventCreated(true)}>
                     Create
                 </button>
