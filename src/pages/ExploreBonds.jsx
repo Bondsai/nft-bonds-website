@@ -30,8 +30,8 @@ const ExploreBonds = () => {
     }, [])
 
     const filteredItems = items.filter(item => item.title.toLowerCase().includes(request.toLowerCase()))
-    const activeItems = filteredItems.filter(item => item.fullTokensAmount.toString() !== item.collectedTokensAmount.toString())
-    const collectedItems = filteredItems.filter(item => item.fullTokensAmount.toString() === item.collectedTokensAmount.toString())
+    const activeItems = filteredItems.filter(item => item.totalNfts.toString() !== item.collectedNfts.toString())
+    const collectedItems = filteredItems.filter(item => item.totalNfts.toString() === item.collectedNfts.toString())
     const shownItems = activePage === EventTab.Active ? activeItems : collectedItems
 
     return (

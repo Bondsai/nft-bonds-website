@@ -19,13 +19,17 @@ const EventItem = ({item}) => {
         return urls
     }
 
+    const handler = () => {
+        window.location.assign(`/event/${item.authority.toString()}`);
+    };
+
     useEffect(() => {
         getImages().then(r => setImages(r))
     }, [])
 
     const time = item.duration
-    const all = item.fullTokensAmount.toString()
-    const collected = item.collectedTokensAmount.toString()
+    const all = item.totalNfts.toString()
+    const collected = item.collectedNfts.toString()
 
     return (
         <div className="border-gradient w-60 h-100 m-5 transition-shadow bg-gray-900">
@@ -35,12 +39,14 @@ const EventItem = ({item}) => {
                         className="z-10 p-2 bg-blend-overlay text-2xl justify-center flex absolute w-10 h-10 bg-sol-sea text-white rounded-tr-md rounded-bl-md ml-158px">
                     </ImCheckmark>
                 }
-                {images.length === 0 &&
+                {images.length === 0
+                    ?
                     <div className="object-center w-full h-40">
                         <NewSmallLoader/>
                     </div>
+                    :
+                    <Slider className="z-0" itemsUrls={images}/>
                 }
-                <Slider className="z-0" itemsUrls={images}/>
             </div>
             <div className="text-white text-xl font-bold truncate hover:text-clip px-5 text-center font-archivo">
                 {item.title}
@@ -48,7 +54,7 @@ const EventItem = ({item}) => {
             <div className="text-sol-white justify-center flex px-1 font-archivo">
                 <IoMdPricetags className="mt-1 mr-1"/>
                 <div>
-                    Sale: {item.percent}%
+                    Sale for tokens: {item.percent}%
                 </div>
             </div>
             <div className="text-sol-white justify-center flex px-1 font-archivo">
@@ -60,12 +66,12 @@ const EventItem = ({item}) => {
             <div className="text-sol-white justify-center flex px-1 font-archivo">
                 <ImCheckmark className="mt-1 mr-1"/>
                 <div>
-                    Distributed: {collected}/{all}
+                    Collected: {collected}/{all}
                 </div>
             </div>
-            <div className="justify-center flex">
+            <div className="justify-center flex h-30  mb-5 mt-2">
                 <Link to={`/event/${item.authority.toString()}`}
-                      className="px-7 py-1 bg-gradient-to-br from-sol-green text-sm to-blue-500 text-white rounded-xl mb-5 mt-2"
+                      className="px-7 py-1 bg-gradient-to-br from-sol-green text-sm to-blue-500 text-white rounded-xl"
                 >
                     Learn more
                 </Link>
