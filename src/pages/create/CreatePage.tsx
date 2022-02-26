@@ -10,6 +10,7 @@ import SignedInProfilePage from "../profile/SignedInProfilePage";
 import ConnectWalletButton from "../../components/common/auth/ConnectWalletButton";
 import {createEvent} from "../../solana/rpc/createEvent";
 import {PublicKey} from "@solana/web3.js";
+import AddNft from "./AddNft";
 
 export interface Row {
     id: number,
@@ -63,12 +64,11 @@ const CreatePage = () => {
         <AccountContext.Consumer>
             {({account, changeAccount}) =>
                 (eventCreated && account.length !== 0 ?
-                        <div className="flex flex-col mx-auto w-3/4">
-                            <AddForm setNftAddress={setNftAddress} submitNftAddress={addNewRow}
-                                     nftAddress={nftAddress}/>
-                            <NftListVerbose rows={rows} removeRow={removeRow}/>
-                            <Modal rows={rows}/>
-                        </div> :
+                        <AddNft setNftAddress={setNftAddress}
+                                addNewRow={addNewRow}
+                                nftAddress={nftAddress}
+                                rows={rows}
+                                removeRow={removeRow}/>:
                         <CreateEvent setEventName={setEventName}
                                      setVestingPeriod={setVestingPeriod}
                                      setEventDuration={setEventDuration}
