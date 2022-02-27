@@ -4,6 +4,7 @@ import {PublicKey} from "@solana/web3.js";
 import {findAssociatedTokenAddress, findOfferAddress} from "../find";
 import {Token, TOKEN_PROGRAM_ID} from "@solana/spl-token";
 import {getSolanaProvider} from "../wallet/provider";
+import {unmountComponentAtNode} from "react-dom";
 
 interface MakeOfferParams {
     eventAddress: PublicKey,
@@ -31,6 +32,7 @@ export const makeOffer = async ({
     )
 
     const offerMakerPlatformTokensTokenAccount = await createOrFindAssociatedAccount(offerMakerAddress, tokenAddress)
+    const _ = await createOrFindAssociatedAccount(offerMakerAddress, nftAddress)
 
     await program.rpc.makeOffer(
         bumpAddress,
@@ -63,7 +65,7 @@ export const createTokenInstance = (tokenAddress: PublicKey) => {
 };
 
 export const createOrFindAssociatedAccount = async (walletAddress: PublicKey, tokenAddress: PublicKey) => {
-     return findAssociatedTokenAddress(walletAddress, tokenAddress)
+    return findAssociatedTokenAddress(walletAddress, tokenAddress)
         .then(response => response)
         .catch(async () => {
             const token = createTokenInstance(tokenAddress)

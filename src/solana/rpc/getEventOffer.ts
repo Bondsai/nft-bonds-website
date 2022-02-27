@@ -6,12 +6,12 @@ import {findEventAddress, findOfferAddress} from "../find";
 
 export interface EventOfferResponse {
     authority: PublicKey
+    kindOfTokenWantedInReturn: PublicKey
+    offerAccount: PublicKey
     isCollected: boolean
     amountOfOfferedTokens: BN
-    kindOfTokenWantedInReturn: PublicKey
     escrowedTokensOfOfferMakerBump: number
     bump: number
-    offerAccount: PublicKey
 }
 
 export interface NftOfferResponse {

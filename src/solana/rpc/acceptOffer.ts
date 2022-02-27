@@ -3,6 +3,7 @@ import {TOKEN_PROGRAM_ID} from "@solana/spl-token";
 import {PublicKey} from "@solana/web3.js";
 import {web3} from "@project-serum/anchor";
 import {createOrFindAssociatedAccount} from "./makeOffer";
+import {findAssociatedTokenAddress} from "../find";
 
 export interface AcceptOfferParams {
     offerAccount: PublicKey,
@@ -27,9 +28,16 @@ export const acceptOffer = async ({
         program.programId
     )
 
-    const offerMakerNftTokenAccount = await createOrFindAssociatedAccount(authorityAccount, nftMintAccount)
+    const offerMakerNftTokenAccount = await findAssociatedTokenAddress(authorityAccount, nftMintAccount)
     const offerTakerNftTokenAccount = await createOrFindAssociatedAccount(offerTaker, nftMintAccount)
     const offerTakerPlatformTokensTokenAccount = await createOrFindAssociatedAccount(offerTaker, tokenAddress)
+
+    // console.log(offerMakerNftTokenAccount, offerTakerNftTokenAccount, offerTakerPlatformTokensTokenAccount, offerAccount, toke)
+    console.log(offerMakerNftTokenAccount.toString())
+    console.log(offerTakerNftTokenAccount.toString())
+    console.log(offerTakerPlatformTokensTokenAccount.toString())
+    console.log(escrowedTokensOfOfferMaker.toString())
+    console.log(authorityAccount.toString())
 
     return await program.rpc.acceptOffer(
         {

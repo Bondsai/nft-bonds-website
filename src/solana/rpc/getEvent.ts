@@ -6,6 +6,7 @@ import {BN} from "@project-serum/anchor";
 export interface EventResponse {
     authority: PublicKey
     token: PublicKey
+    eventAddress: PublicKey
     bump: number
     collectedTokensAmount: BN
     duration: number
@@ -17,7 +18,6 @@ export interface EventResponse {
     collectedNfts: number
     totalNfts: number
     vestingTime: number,
-    eventAddress: PublicKey
 }
 
 export const getEvent = async (walletAccount: string | PublicKey): Promise<EventResponse> => {
