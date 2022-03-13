@@ -42,7 +42,7 @@ const AddNft = React.memo<Props>(({
             tokenAddress: new PublicKey(tokenAddress),
             nftAddress: new PublicKey(nftAddress),
             index,
-            price: 1
+            price: 2 * 100000000
         })
     }
 
