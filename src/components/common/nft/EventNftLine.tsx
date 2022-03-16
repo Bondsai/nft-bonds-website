@@ -1,24 +1,29 @@
-import React from 'react';
+import React, {useState} from 'react';
 import TokenPriceBlock from "../coin/TokenPriceBlock";
 import {SiEthereum} from 'react-icons/si'
 import {HiOutlineCheckCircle} from "react-icons/hi";
 import {acceptOffer, AcceptOfferParams} from "../../../solana/rpc/acceptOffer";
+import {PublicKey} from "@solana/web3.js";
 
 interface EventNftLineProps {
     mintAddress: string,
+    currentUserId: string
     image?: string,
     name: string,
-    isCollected: boolean,
-    params: AcceptOfferParams
+    defaultIsCollected: boolean,
+    params: Omit<AcceptOfferParams, 'offerTaker'>
 }
 
 const EventNftLine = React.memo<EventNftLineProps>(({
     mintAddress,
+    currentUserId,
     image,
     name,
-    isCollected,
+    defaultIsCollected,
     params,
 }) => {
+    const [isCollected, setIsCollected] = useState(defaultIsCollected)
+    const [clicked, setClicked] = useState(false)
     return (
         <div className="overflow-hidden font-archivo
                         inline-flex max-h-24 items-center justify-between py-4">
@@ -43,12 +48,25 @@ const EventNftLine = React.memo<EventNftLineProps>(({
                         <HiOutlineCheckCircle/>
                     </div>
                     :
-                    <button onClick={() => acceptOffer(params)
-                        .then(response => console.log(response))
-                        .catch(e => console.log(e.toString()))
-                    }>
-                        Sell
-                    </button>
+                    currentUserId ?
+                        <button
+                            className="rounded-xl bg-white px-7 py-2 font-archivo font-bold text-black hover:bg-gray-200
+                                       disabled:bg-gray-600"
+                            onClick={() => {
+                                setClicked(true)
+                                acceptOffer({
+                                        ...params,
+                                        offerTaker: new PublicKey(currentUserId)
+                                    }
+                                ).then(() => setIsCollected(true)
+                                ).catch(e => alert(e?.message?.toString())
+                                ).finally(() => setClicked(false))
+                            }}
+                            disabled={clicked}
+                        >
+                            Sell
+                        </button>
+                        : null
             }</div>
         </div>
     );

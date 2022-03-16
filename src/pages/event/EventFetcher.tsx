@@ -1,30 +1,17 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import EventPage from "./EventPage";
 import {useParams} from "react-router-dom";
-import {useAppDispatch, useAppSelector} from "../../hooks/redux";
-import {fetchEventData} from "../../store/event/thunk";
 import ExploreLoader from "../../components/common/loader/ExploreLoader";
 import NotFoundPage from "../NotFoundPage";
-import {AccountContext} from "../../App";
-import {Popover} from "@headlessui/react";
-import WalletButton from "../profile/WalletButton";
-import SignedInProfilePage from "../profile/SignedInProfilePage";
-import ConnectWalletButton from "../../components/common/auth/ConnectWalletButton";
+import {useFetchEvent} from "../../hooks/useFetchEvent";
 
 type RouterParams = {
-    userAccount: string
+    eventAccount: string
 }
 
 const EventFetcher = () => {
-    const {userAccount} = useParams<RouterParams>()
-    const dispatch = useAppDispatch()
-    const {event, fetching} = useAppSelector(state => state.eventPreview)
-
-    useEffect(() => {
-        if (userAccount) {
-            dispatch(fetchEventData(userAccount))
-        }
-    }, [])
+    const {eventAccount} = useParams<RouterParams>()
+    const {event, fetching} = useFetchEvent(eventAccount)
 
     if (fetching) {
         return <ExploreLoader/>
