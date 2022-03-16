@@ -3,7 +3,6 @@ import {IconContext} from "react-icons";
 import {MdCreate} from "react-icons/md";
 import EventTitle from "../../components/common/event/EventTitle";
 import FloatingLabelInput from "./FloatingLabelInput";
-import {createEvent} from "../../solana/rpc/createEvent";
 
 interface Props {
     setEventName: (s: string) => void
@@ -12,7 +11,7 @@ interface Props {
     setEventCreated: (b: boolean) => void
     setTokenAddress: (s: string) => void
     setDiscount: (n: number) => void
-    callCreateEvent: (s: string) => void
+    callCreateEvent: (s: string) => Promise<any>
     account: string
 }
 
@@ -66,9 +65,10 @@ const CreateEvent = React.memo<Props>(({
                            w-1/3
                            mx-auto
                            hover:from-purple-300 hover:to-blue-500"
-                            onClick={async () => {
-                                await callCreateEvent(account)
-                                setEventCreated(true)
+                            onClick={() => {
+                                callCreateEvent(account)
+                                    .then(() => setEventCreated(true))
+                                    .catch(e => alert(e?.message?.toString()))
                             }}>
                         Create
                     </button>}

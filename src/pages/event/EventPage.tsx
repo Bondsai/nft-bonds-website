@@ -1,5 +1,4 @@
 import React, {useEffect, useRef, useState} from 'react';
-
 import InfoBlock from "../../components/common/event/info/InfoBlock";
 import EventTitle from "../../components/common/event/EventTitle";
 import TokenSearchInput from "../../components/common/event/search/TokenSearchInput";
@@ -14,8 +13,6 @@ import {fetchOffers} from "../../store/offers/thunk";
 import {useObserver} from "../../hooks/useObserver";
 import {eventOffersSlice} from "../../store/offers/offers";
 import {eventPreviewSlice} from "../../store/event/preview";
-import {acceptOffer, AcceptOfferParams} from "../../solana/rpc/acceptOffer";
-import {PublicKey} from "@solana/web3.js";
 import {AccountContext} from "../../App";
 
 
@@ -49,7 +46,7 @@ const EventPage: React.FC<EventScreenProps> = ({
 
     return (
         <AccountContext.Consumer>
-            {({account, changeAccount}) =>
+            {({account}) =>
                 (<div className="max-w-screen-2xl mx-auto">
                         <div className="flex flex-col pt-12 px-4 justify-center max-w-max mx-auto gap-8 md:gap-14">
                             <div>
@@ -81,15 +78,15 @@ const EventPage: React.FC<EventScreenProps> = ({
                                     {offers.map((offer, index) =>
                                         <>
                                             <EventNftLine key={offer.token.meta.pubkey.toString()}
+                                                          currentUserId={account}
                                                           mintAddress={offer.token.meta.data.mint}
                                                           name={offer.token.meta.data.data.name}
-                                                          isCollected={offer.offer.isCollected}
+                                                          defaultIsCollected={offer.offer.isCollected}
                                                           image={offer.token.image}
                                                           params={{
                                                               authorityAccount: event.authority,
                                                               offerAccount: offer.offer.offerAccount,
                                                               eventAccount: event.eventAddress,
-                                                              offerTaker: new PublicKey(account),
                                                               tokenAddress: event.token,
                                                               nftMintAccount: offer.offer.kindOfTokenWantedInReturn,
                                                           }}

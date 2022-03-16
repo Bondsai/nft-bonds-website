@@ -4,7 +4,7 @@ import BaseButton from "../../components/common/buttons/BaseButton";
 
 interface FormProps {
     setNftAddress: (s: string) => void,
-    submitEvent: () => Promise<any>
+    submitEvent: () => void
     submitNftAddress: (e: React.MouseEvent<HTMLButtonElement>) => void
     nftAddress: string
 }

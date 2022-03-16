@@ -50,11 +50,11 @@ const AddNft = React.memo<Props>(({
     return (
         <div className="flex flex-col mx-auto w-3/4">
             <AddForm setNftAddress={setNftAddress}
-                     submitEvent={async () => {
+                     submitEvent={() => {
                          if (eventAddress) {
                              submitEvent(new PublicKey(eventAddress))
-                                 .then(() => navigate(`/event/${eventAddress}`))
-                                 .catch(e => alert("Submission FAILED: " + e.toString()))
+                                 .then(() => navigate(`/event/${account}`))
+                                 .catch(e => alert("Submission FAILED: " + e?.message?.toString()))
                          }
                      }}
                      submitNftAddress={() => {
