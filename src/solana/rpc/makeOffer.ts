@@ -30,18 +30,6 @@ export const makeOffer = async ({
     )
 
     const offerMakerPlatformTokensTokenAccount = await findAssociatedTokenAddress(offerMakerAddress, tokenAddress)
-    //const _ = await createOrFindAssociatedAccount(offerMakerAddress, nftAddress)
-
-
-    // console.log("MAKE_OFFER")
-    // console.log("eventAddress:", eventAddress.toString())
-    // console.log("programAddress:",programAddress.toString())
-    // console.log("offerMakerAddress:", offerMakerAddress.toString())
-    // console.log("offerMakerPlatformTokensTokenAccount:",offerMakerPlatformTokensTokenAccount.toString())
-    // console.log("escrowedTokensOfOfferMaker:", escrowedTokensOfOfferMaker.toString())
-    // console.log("tokenAddress:",tokenAddress.toString())
-    // console.log("nftAddress:",nftAddress.toString())
-    // console.log(TOKEN_PROGRAM_ID)
 
     await program.rpc.makeOffer(
         bumpAddress,
@@ -65,7 +53,6 @@ export const makeOffer = async ({
 }
 
 export const createTokenInstance = async (tokenAddress: PublicKey, payer: Signer) => {
-
     return new Token(
         program.provider.connection,
         tokenAddress,
@@ -73,22 +60,8 @@ export const createTokenInstance = async (tokenAddress: PublicKey, payer: Signer
         payer
     )
 };
-//
-// export const createOrFindAssociatedAccount = async (walletAddress: PublicKey, tokenAddress: PublicKey) => {
-//     return findAssociatedTokenAddress(walletAddress, tokenAddress)
-//         .then(response => response)
-//         .catch(async () => {
-//             console.log("#_CREATE:", walletAddress.toString(), tokenAddress.toString())
-//             const token = await createTokenInstance(tokenAddress)
-//             console.log(token.publicKey.toString())
-//             return await token.createAssociatedTokenAccount(walletAddress)
-//         })
-// }
 
 export const createOrFindAssociatedAccount2 = async (walletAddress: PublicKey, tokenAddress: PublicKey, payer: Signer) => {
-    console.log("CREATE:", walletAddress.toString(), tokenAddress.toString())
     const token = await createTokenInstance(tokenAddress, payer)
-    console.log(token.publicKey.toString())
-    console.log(token)
     return await token.getOrCreateAssociatedAccountInfo(walletAddress)
 }

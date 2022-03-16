@@ -1,5 +1,5 @@
 import {PublicKey} from "@solana/web3.js";
-import {BN, utils, web3} from "@project-serum/anchor";
+import {BN} from "@project-serum/anchor";
 import {NETWORK, program} from "../core/program";
 import {getNFT, ImageTokenMetadata} from "../requests";
 import {findEventAddress, findOfferAddress} from "../find";

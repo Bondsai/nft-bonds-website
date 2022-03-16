@@ -43,7 +43,10 @@ const EventNftLine = React.memo<EventNftLineProps>(({
                         <HiOutlineCheckCircle/>
                     </div>
                     :
-                    <button onClick={async () => await acceptOffer(params)}>
+                    <button onClick={() => acceptOffer(params)
+                        .then(response => console.log(response))
+                        .catch(e => console.log(e.toString()))
+                    }>
                         Sell
                     </button>
             }</div>

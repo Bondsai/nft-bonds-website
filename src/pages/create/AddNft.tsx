@@ -7,6 +7,7 @@ import {findEventAddress} from "../../solana/find";
 import {PublicKey} from "@solana/web3.js";
 import {makeOffer} from "../../solana/rpc/makeOffer";
 import {submitEvent} from "../../solana/rpc/submitEvent";
+import {useNavigate} from "react-router-dom";
 
 interface Props {
     setNftAddress: (s: string) => void
@@ -28,15 +29,15 @@ const AddNft = React.memo<Props>(({
     const [nftAddress, setNftAddress] = useState('')
     const [index, setIndex] = useState(0)
 
+    const navigate = useNavigate()
+
     useEffect(() => {
         findEventAddress(new PublicKey(account))
             .then(({programAddress}) => setEventAddress(programAddress.toString()))
     }, [])
 
-    console.log(eventAddress, account, tokenAddress, nftAddress)
-
-    const add = async (eventAddress: string, nftAddress: string, index: number) => {
-        return await makeOffer({
+    const add = (eventAddress: string, nftAddress: string, index: number) => {
+        return makeOffer({
             eventAddress: new PublicKey(eventAddress),
             offerMakerAddress: new PublicKey(account),
             tokenAddress: new PublicKey(tokenAddress),
@@ -51,13 +52,18 @@ const AddNft = React.memo<Props>(({
             <AddForm setNftAddress={setNftAddress}
                      submitEvent={async () => {
                          if (eventAddress) {
-                             await submitEvent(new PublicKey(eventAddress))
+                             submitEvent(new PublicKey(eventAddress))
+                                 .then(() => navigate(`/event/${eventAddress}`))
+                                 .catch(e => alert("Submission FAILED: " + e.toString()))
                          }
                      }}
-                     submitNftAddress={async () => {
+                     submitNftAddress={() => {
                          if (eventAddress && nftAddress) {
-                             await add(eventAddress, nftAddress, index)
-                             setIndex(index + 1)
+                             add(eventAddress, nftAddress, index)
+                                 .then(() =>
+                                     setIndex(index + 1)
+                                 )
+                                 .catch(() => console.log('w'))
                          }
                      }}
                      nftAddress={nftAddress}
