@@ -3,17 +3,13 @@ import CreateEvent from "./CreateEvent";
 import {AccountContext} from "../../App";
 import {createEvent} from "../../solana/rpc/createEvent";
 import {PublicKey} from "@solana/web3.js";
-import AddNft from "./AddNft";
-import NftTestList from "./NftTestList";
+import AddNftForm from "./AddNftForm";
 
 export interface Row {
     id: number,
     address: string
     name: string
-}
-
-export interface Rows {
-    rows: Row[]
+    image: string
 }
 
 const CreatePage = () => {
@@ -28,21 +24,20 @@ const CreatePage = () => {
     const [nftAddress, setNftAddress] = useState('')
     const [rows, setRows] = useState<Row[]>([])
 
-    const addNewRow = (e: React.MouseEvent<HTMLButtonElement>) => {
-        e.preventDefault()
-        setRows([...rows, {id: rows.length + 1, address: nftAddress, name: "Flower #26"}])
+    const addNewRow = (row: Row) => {
+        setRows([...rows, {id: row.id, address: row.address, name: row.name, image: row.image}])
     }
 
     return (
         <AccountContext.Consumer>
             {({account, changeAccount}) =>
                 (eventCreated && account.length !== 0 ?
-                        <NftTestList setNftAddress={setNftAddress}
-                                tokenAddress={tokenAddress}
-                                addNewRow={addNewRow}
-                                nftAddress={nftAddress}
-                                rows={rows}
-                                account={account}/> :
+                        <AddNftForm setNftAddress={setNftAddress}
+                                    tokenAddress={tokenAddress}
+                                    addNewRow={addNewRow}
+                                    nftAddress={nftAddress}
+                                    rows={rows}
+                                    account={account}/> :
                         <CreateEvent setEventName={setEventName}
                                      setVestingPeriod={setVestingPeriod}
                                      setEventDuration={setEventDuration}
