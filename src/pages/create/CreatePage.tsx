@@ -4,10 +4,12 @@ import {AccountContext} from "../../App";
 import {createEvent} from "../../solana/rpc/createEvent";
 import {PublicKey} from "@solana/web3.js";
 import AddNft from "./AddNft";
+import NftTestList from "./NftTestList";
 
 export interface Row {
     id: number,
-    text: string
+    address: string
+    name: string
 }
 
 export interface Rows {
@@ -28,24 +30,18 @@ const CreatePage = () => {
 
     const addNewRow = (e: React.MouseEvent<HTMLButtonElement>) => {
         e.preventDefault()
-        setRows([...rows, {id: rows.length + 1, text: nftAddress}])
-    }
-
-    const removeRow = (id: number) => {
-        const newRows = rows.filter((row) => row.id !== id)
-        setRows(newRows)
+        setRows([...rows, {id: rows.length + 1, address: nftAddress, name: "Flower #26"}])
     }
 
     return (
         <AccountContext.Consumer>
             {({account, changeAccount}) =>
                 (eventCreated && account.length !== 0 ?
-                        <AddNft setNftAddress={setNftAddress}
+                        <NftTestList setNftAddress={setNftAddress}
                                 tokenAddress={tokenAddress}
                                 addNewRow={addNewRow}
                                 nftAddress={nftAddress}
                                 rows={rows}
-                                removeRow={removeRow}
                                 account={account}/> :
                         <CreateEvent setEventName={setEventName}
                                      setVestingPeriod={setVestingPeriod}

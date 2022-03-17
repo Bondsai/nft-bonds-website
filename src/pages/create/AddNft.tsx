@@ -14,7 +14,6 @@ interface Props {
     addNewRow: (e: React.MouseEvent<HTMLButtonElement>) => void
     nftAddress: string
     rows: Row[]
-    removeRow: (n: number) => void
     tokenAddress: string
     account: string
 }
@@ -22,7 +21,6 @@ interface Props {
 const AddNft = React.memo<Props>(({
     tokenAddress,
     rows,
-    removeRow,
     account
 }) => {
     const [eventAddress, setEventAddress] = useState<string | null>(null)

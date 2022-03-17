@@ -46,7 +46,7 @@ const NftListVerbose: React.FC<Props> = ({rows, removeRow}) => {
                                     <tr key={row.id}
                                         className="border-b last:border-b-0 last:border-0 bg-gray-800 border-gray-700">
                                         <td className="py-4 px-6 text-sm font-medium whitespace-nowrap text-white">
-                                            {row.text}
+                                            {row.address}
                                         </td>
                                         <td className="py-4 px-6 text-sm whitespace-nowrap text-gray-400">
                                             Sliver

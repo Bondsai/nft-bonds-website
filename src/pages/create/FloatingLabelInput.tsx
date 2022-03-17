@@ -5,20 +5,21 @@ interface Props {
     id: string
     placeholder: string
     func: (e: any) => void
+    extraClasses?: string
 }
 
-const FloatingLabelInput: React.FC<Props> = ({inputType, id, placeholder, func}) => {
+const FloatingLabelInput: React.FC<Props> = ({inputType, id, placeholder, func, extraClasses}) => {
     return (
         <div className="relative rounded-3xl">
             <input type={inputType} id={id}
                    onChange={(e) => func(e.target.value)}
-                   className="float-input pt-8
+                   className= {extraClasses + ` float-input pt-8
                         text-white
                         text-base
                         bg-dark-gray font-archivo
                         rounded-2xl
                         focus:outline-none rounded-md focus:border-gray-500
-                        focus:shadow-sm w-full p-3 h-16 placeholder-transparent"
+                        focus:shadow-sm w-full p-3 h-16 placeholder-transparent`}
                    placeholder={placeholder} autoComplete="off"/>
             <label htmlFor={id}
                    className="float-label
