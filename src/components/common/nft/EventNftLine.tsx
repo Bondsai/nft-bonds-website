@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import TokenPriceBlock from "../coin/TokenPriceBlock";
-import {SiEthereum} from 'react-icons/si'
+import {SiDogecoin} from 'react-icons/si'
 import {HiOutlineCheckCircle} from "react-icons/hi";
 import {acceptOffer, AcceptOfferParams} from "../../../solana/rpc/acceptOffer";
 import {PublicKey} from "@solana/web3.js";
@@ -37,7 +37,7 @@ const EventNftLine = React.memo<EventNftLineProps>(({
                     <a href={`https://solscan.io/token/${mintAddress}`}
                        target="_blank">{name}
                     </a>
-                    <TokenPriceBlock amount={"100"} icon={<SiEthereum/>}/>
+                    <TokenPriceBlock amount={"200,000,000"} icon={<SiDogecoin/>}/>
                 </div>
             </div>
             <div className="mr-2 text-sol-white text-sm font-archivo">{

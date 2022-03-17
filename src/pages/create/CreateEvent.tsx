@@ -68,7 +68,9 @@ const CreateEvent = React.memo<Props>(({
                             onClick={() => {
                                 callCreateEvent(account)
                                     .then(() => setEventCreated(true))
-                                    .catch(e => alert(e?.message?.toString()))
+                                    .catch(e => alert(e?.message?.toString() === "failed to send transaction: Transaction simulation failed: Error processing Instruction 0: custom program error: 0x0" ?
+                                        "Sorry, you already have an active created event" : e?.message?.toString()
+                                    ))
                             }}>
                         Create
                     </button>}
