@@ -3,15 +3,13 @@ import CreateEvent from "./CreateEvent";
 import {AccountContext} from "../../App";
 import {createEvent} from "../../solana/rpc/createEvent";
 import {PublicKey} from "@solana/web3.js";
-import AddNft from "./AddNft";
+import AddNftForm from "./AddNftForm";
 
 export interface Row {
     id: number,
-    text: string
-}
-
-export interface Rows {
-    rows: Row[]
+    address: string
+    name: string
+    image: string
 }
 
 const CreatePage = () => {
@@ -26,27 +24,20 @@ const CreatePage = () => {
     const [nftAddress, setNftAddress] = useState('')
     const [rows, setRows] = useState<Row[]>([])
 
-    const addNewRow = (e: React.MouseEvent<HTMLButtonElement>) => {
-        e.preventDefault()
-        setRows([...rows, {id: rows.length + 1, text: nftAddress}])
-    }
-
-    const removeRow = (id: number) => {
-        const newRows = rows.filter((row) => row.id !== id)
-        setRows(newRows)
+    const addNewRow = (row: Row) => {
+        setRows([...rows, {id: row.id, address: row.address, name: row.name, image: row.image}])
     }
 
     return (
         <AccountContext.Consumer>
             {({account, changeAccount}) =>
                 (eventCreated && account.length !== 0 ?
-                        <AddNft setNftAddress={setNftAddress}
-                                tokenAddress={tokenAddress}
-                                addNewRow={addNewRow}
-                                nftAddress={nftAddress}
-                                rows={rows}
-                                removeRow={removeRow}
-                                account={account}/> :
+                        <AddNftForm setNftAddress={setNftAddress}
+                                    tokenAddress={tokenAddress}
+                                    addNewRow={addNewRow}
+                                    nftAddress={nftAddress}
+                                    rows={rows}
+                                    account={account}/> :
                         <CreateEvent setEventName={setEventName}
                                      setVestingPeriod={setVestingPeriod}
                                      setEventDuration={setEventDuration}
